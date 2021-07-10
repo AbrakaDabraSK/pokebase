@@ -20,9 +20,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       try {
         const { url } = req.body
 
-        if (!url.length) { return res.status(404).json({ message: 'URL not defined' }) }
+        if (!url.length) { return res.status(400).json({ message: 'URL not defined' }) }
+
+        const exists = await new Link().hasURL(url)
+
+        if (exists) { return res.status(400).json({ message: 'URL is already taken' }) }
 
         const data = await new Link().create(url)
+        
         return res.status(201).json(data)
       } catch(error) {
         return res.status(500).json({ message: error.message })
