@@ -10,11 +10,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   switch (req.method) {
     case HTTPRequestMethods.GET:
       try {
-        const data = await new ListOfLinks().get(12,0)
-        console.log(data)
+        const data = await new ListOfLinks().get(0,12)
+
         return res.status(200).json(data)
       } catch(error) {
-        return res.status(500).json({error})
+        return res.status(500).json({ message: error.message })
       }
     case HTTPRequestMethods.POST:
       try {
