@@ -5,12 +5,23 @@ export enum HTTPRequestMethods {
   PATCH = "PATCH",
   DELETE = "DELETE"
 }
-export interface LinkEntityInterface {
-  url: string
-}
-export interface CrawlerInterface {
-  url: string
+export interface LinkEntity {
+  id: number,
+  url: string,
+  domain: string,
+  image: string,
+  title: string,
+  desc: string,
+  keywords: string
 }
 export interface CrawlerLinkResponse {
-  url: string
+  url: string,
+  domain: string,
+  image: string,
+  title: string,
+  desc: string,
+  keywords: string
+}
+export interface HtmlContentParserInterface {
+  $: any
 }
