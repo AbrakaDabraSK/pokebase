@@ -1,15 +1,16 @@
 import client from '../client'
 
 export default class ListOfLinks {
-  async get(take: number, skip: number) {
+  async get(skip: number, take: number) {
     try {
       const { data } = await client
         .from('link')
         .select('*')
+        .range(skip, take)
 
       return data
     } catch(error) {
-      return error.message
+      throw new Error(error)
     }
   }
 }
