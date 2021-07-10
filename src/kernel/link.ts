@@ -6,6 +6,20 @@ import {
 } from '../types'
 
 export default class Link {
+  async hasURL(url: string) {
+    try {
+      const { data } = await client
+        .from('link')
+        .select("id")
+        .eq('url', url)
+        .range(0, 1)
+
+      return 1 === data.length
+    } catch(error) {
+      throw new Error(error)
+    }
+  }
+
   async byID(id: string) {
     try {
       const { data } = await client
