@@ -10,10 +10,10 @@ export default function NewsFeed() {
   const { data: pokes } = useSWR<Poke[]>('/newsfeed')
 
   return (
-    <div>
+    <section>
       {pokes?.map(poke => (
         <NewsFeedCard poke={poke} key={poke.id} />
       ))}
-    </div>
+    </section>
   )
 }

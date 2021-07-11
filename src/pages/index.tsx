@@ -14,9 +14,9 @@ export default function Home() {
       </Head>
       <NavBar />
       <Main>
-        <div></div>
+        <section></section>
         <NewsFeed />
-        <div></div>
+        <section></section>
       </Main>
     </>
   )
