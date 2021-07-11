@@ -5,13 +5,13 @@ import {
 const NewsFeedCard: React.FC<NewsFeedCardProps> = ({ poke }) => {
   return (
     <a 
-      className="relative flex flex-col items-start justify-center mb-4 break-words bg-white rounded shadow-md cursor-pointer"
+      className="flex flex-col items-start justify-center mb-4 break-words bg-white rounded shadow-md cursor-pointer"
       href={poke.url}
       target="_blank"
       rel="noopener noreferrer"
     >
       <div 
-        className="w-full bg-center bg-no-repeat bg-cover h-96"
+        className="w-full bg-center bg-no-repeat bg-cover h-64 md:h-96"
         style={{
           backgroundImage: `url('${poke.image}')`,
         }}
