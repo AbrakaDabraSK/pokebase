@@ -19,7 +19,7 @@ const Search: React.FC = () => {
       <div className="relative flex items-center bg-gray-100 border-b shadow-md hover:border-green-500 hover:bg-white">
         <i className='pl-4 pr-3 text-gray-500 bx bx-search-alt'></i>
         <input 
-          className="py-1 pr-3 bg-transparent rounded focus:outline-none"
+          className="w-full py-1 pr-3 bg-transparent rounded focus:outline-none"
           type="text"
           value={terms}
           onChange={e => setTerms(e.target.value)}
