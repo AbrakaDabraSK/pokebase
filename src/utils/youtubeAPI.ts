@@ -83,6 +83,7 @@ export default class YoutubeAPI implements YoutubeAPIInterface {
   }
 
   private tags(data: any): string {
-    return data.items[0].snippet.tags.join(',')
+    const tags = data.items[0].snippet.tags
+    return typeof tags === "undefined" ? '' : tags.join(',')
   }
 }
