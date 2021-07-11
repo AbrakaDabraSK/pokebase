@@ -5,7 +5,8 @@ const Title: React.FC = () => {
     <div className="flex items-center">
       <Link href="/">
         <a>
-          <span className="font-semibold text-black">
+          <i className="relative mr-1 inset-0.5 text-xl bx bxs-face-mask"></i>
+          <span className="text-xl font-semibold text-black">
             pokebase
           </span>
         </a>

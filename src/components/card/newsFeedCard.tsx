@@ -17,7 +17,7 @@ const NewsFeedCard: React.FC<NewsFeedCardProps> = ({ poke }) => {
         }}
       ></div>
       <div className="w-full h-auto px-3 mt-3">
-        <span className="items-center p-1 mb-1 text-sm font-semibold text-white bg-blue-500 rounded">
+        <span className="items-center px-2 py-1 mb-1 text-sm font-semibold text-white bg-green-500 rounded">
           {poke.domain === 'youtube.com' && (
             <i className="relative mr-1 inset-0.5 text-md bx bxl-youtube" ></i>
           )}
