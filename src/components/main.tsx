@@ -1,8 +1,6 @@
 const Main: React.FC = ({ children }) => (
-  <main className="flex items-start min-h-screen">
-    <div className="flex-1 max-w-7xl mx-auto p-14">
+  <main className="flex flex-row items-stretch justify-center min-h-screen max-w-7xl mx-auto p-14">
       {children}
-    </div>
   </main>
 )
 
