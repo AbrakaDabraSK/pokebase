@@ -15,7 +15,9 @@ export default function Home() {
       <NavBar />
       <Main>
         <div className="grid grid-cols-1 grid-rows-3 gap-3">
+          <div></div>
           <NewsFeed />
+          <div></div>
         </div>
       </Main>
     </>
