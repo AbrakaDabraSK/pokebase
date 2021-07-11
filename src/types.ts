@@ -18,6 +18,7 @@ export interface Poke {
   title: string
   desc: string
   keywords: string,
+  totalClicks: number,
   createdAt: number,
   updatedAt: number
 }
