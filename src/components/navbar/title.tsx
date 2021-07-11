@@ -6,7 +6,7 @@ const Title: React.FC = () => {
       <Link href="/">
         <a>
           <i className="relative mr-1 inset-0.5 text-xl bx bxs-face-mask"></i>
-          <span className="text-xl font-semibold text-black">
+          <span className="text-xl font-semibold text-black hidden md:block">
             pokebase
           </span>
         </a>
