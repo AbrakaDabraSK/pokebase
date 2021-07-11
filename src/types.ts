@@ -1,18 +1,5 @@
-export enum HTTPRequestMethods {
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  PATCH = "PATCH",
-  DELETE = "DELETE"
-}
-export interface LinkEntity {
-  id: number,
-  url: string,
-  domain: string,
-  image: string,
-  title: string,
-  desc: string,
-  keywords: string
+export interface HtmlContentParserInterface {
+  $: any
 }
 export interface CrawlerLinkResponse {
   url: string,
@@ -22,6 +9,31 @@ export interface CrawlerLinkResponse {
   desc: string,
   keywords: string
 }
-export interface HtmlContentParserInterface {
-  $: any
+
+export interface Poke {
+  id: string,
+  url: string,
+  domain: string
+  image: string
+  title: string
+  desc: string
+  keywords: string,
+  createdAt: number,
+  updatedAt: number
+}
+export interface NewsFeedCardProps {
+  poke: Poke
+}
+
+export interface YoutubeAPIInterface {
+  key: string
+}
+
+export interface YTResponse {
+  url: string,
+  domain: string,
+  image: string,
+  title: string,
+  desc: string,
+  keywords: string
 }

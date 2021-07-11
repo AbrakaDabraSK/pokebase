@@ -4,7 +4,7 @@ import ListOfLinks from '../../../kernel/listOfLinks'
 
 import { 
   HTTPRequestMethods
-} from '../../../types'
+} from '../../../enums'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {

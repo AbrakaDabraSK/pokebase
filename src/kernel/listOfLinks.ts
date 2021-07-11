@@ -6,6 +6,7 @@ export default class ListOfLinks {
       const { data } = await client
         .from('link')
         .select('*')
+        .order('createdAt', { ascending: false })
         .range(skip, take)
 
       return data

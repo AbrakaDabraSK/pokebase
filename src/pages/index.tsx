@@ -1,5 +1,9 @@
 import Head from 'next/head'
 
+import Main from '../components/main'
+import NavBar from '../components/navbar/navbar'
+import NewsFeed from '../components/newsfeed'
+
 export default function Home() {
   return (
     <>
@@ -8,7 +12,12 @@ export default function Home() {
         <meta name="description" content="pokebase" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Pokebase</h1>
+      <NavBar />
+      <Main>
+        <div className="grid grid-cols-1 grid-rows-3 gap-3">
+          <NewsFeed />
+        </div>
+      </Main>
     </>
   )
 }
