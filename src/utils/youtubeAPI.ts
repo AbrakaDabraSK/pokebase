@@ -55,7 +55,6 @@ export default class YoutubeAPI implements YoutubeAPIInterface {
   }
 
   private image(data: any): string {
-    console.log(data.items[0].snippet.thumbnails)
     if (typeof data.items[0].snippet.thumbnails.maxres !== 'undefined') {
       return data.items[0].snippet.thumbnails.maxres.url
     }
