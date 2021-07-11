@@ -7,7 +7,7 @@ export default function Create() {
   return (
     <>
       <Head>
-        <title>Pokebase | Create a poke</title>
+        <title>Create a poke</title>
         <meta name="description" content="Create a poke" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

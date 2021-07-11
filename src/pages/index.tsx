@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Pokebase</title>
+        <title>pokebase</title>
         <meta name="description" content="pokebase" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
