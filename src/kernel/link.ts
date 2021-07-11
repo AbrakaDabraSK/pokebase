@@ -13,7 +13,7 @@ import {
 
 
 export default class Link {
-  async hasURL(url: string) {
+  public async hasURL(url: string) {
     try {
       const { data } = await client
         .from('link')
@@ -27,7 +27,7 @@ export default class Link {
     }
   }
 
-  async byID(id: string) {
+  public async byID(id: string) {
     try {
       const { data } = await client
         .from('link')
@@ -41,10 +41,18 @@ export default class Link {
     }
   }
 
-  async create(url: string) {
-    if (getDomainFromURL(url) === process.env.YOUTUBE_DOMAIN)
-      return await this.createYoutube(url)
+  public async create(url: string) {
+    try {
+      if (getDomainFromURL(url) === process.env.YOUTUBE_DOMAIN)
+        return await this.createFromYoutube(url)
 
+      return await this.createFromURL(url)
+    } catch(error) {
+      throw new Error(error)
+    }
+  }
+
+  private async createFromURL(url: string) {
     try {
       const meta: CrawlerLinkResponse = await new Crawler().link(url)
       const { data } = await client
@@ -57,7 +65,7 @@ export default class Link {
     }
   }
 
-  async createYoutube(url: string) {
+  private async createFromYoutube(url: string) {
     try {
       const meta: YTResponse = await new YoutubeAPI(url).get()
       const { data } = await client
