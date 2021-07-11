@@ -50,9 +50,9 @@ export default function NewsFeed() {
   return (
     <div className="flex-auto w-full">
       {isInitialLoading && <p className="text-lg text-center">Loading...</p>}
-      {pokes?.map(poke => (
+      {pokes?.map((poke, index) => (
         <NewsFeedCard
-          key={poke.id}
+          key={index}
           poke={poke} 
           revalidate={revalidate}
         />
