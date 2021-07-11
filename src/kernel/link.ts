@@ -52,6 +52,17 @@ export default class Link {
     }
   }
 
+  public async clicked(id: string) {
+    try {
+      await client.rpc('increment', { 
+        x: 1, 
+        row_id: id 
+      })
+    } catch(error) {
+      throw new Error(error)
+    }
+  }
+
   private async createFromURL(url: string) {
     try {
       const meta: CrawlerLinkResponse = await new Crawler().link(url)
