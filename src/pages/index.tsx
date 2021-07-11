@@ -1,8 +1,10 @@
 import Head from 'next/head'
 
 import Main from '../components/main'
+import Row from '../components/row'
 import NavBar from '../components/navbar/navbar'
 import NewsFeed from '../components/newsfeed'
+import Sidebar from '../components/sidebar'
 
 export default function Home() {
   return (
@@ -14,9 +16,10 @@ export default function Home() {
       </Head>
       <NavBar />
       <Main>
-        <section></section>
-        <NewsFeed />
-        <section></section>
+        <Row>
+          <NewsFeed />
+          <Sidebar />
+        </Row>
       </Main>
     </>
   )

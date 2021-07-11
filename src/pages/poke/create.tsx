@@ -9,19 +9,25 @@ import NavBar from '../../components/navbar/navbar'
 export default function Create() {
   const [url, setUrl] = useState('')
   const [errors, setErrors] = useState<any>({})
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter()
 
   const submitForm = async (e: FormEvent) => {
     e.preventDefault()
 
+    if (url.length < 3) return null
+
+    setLoading(true)
+    
     try {
-      const res = await Axios.post('/link', {
+      await Axios.post('/link', {
         url
       })
       router.push('/')
     } catch (err) {
       setErrors(err.response.data)
+      setLoading(false)
     }
   }
 
@@ -35,7 +41,7 @@ export default function Create() {
       <NavBar />
       <Main>
         <form 
-          className="w-full md:w-8/12"
+          className="w-full px-3 mx-auto md:w-8/12 md:p-0"
           onSubmit={submitForm}
         >
           <fieldset className="flex flex-col items-baseline justify-center bg-white rounded shadow-sm">
@@ -56,7 +62,11 @@ export default function Create() {
                 Enter URL
               </small>
               <button type="submit" className="w-24 py-2 text-xs font-semibold text-white uppercase bg-green-500 border border-green-500 rounded">
-                Continue
+                {(loading ? (
+                  <i className='bx bx-loader-alt'></i>
+                ) : (
+                  <span>Continue</span>
+                ))}
               </button>
             </div>
             {errors.message && (
