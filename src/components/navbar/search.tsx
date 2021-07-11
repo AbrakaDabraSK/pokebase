@@ -81,7 +81,7 @@ const Search: React.FC = () => {
               <div className="flex flex-col">
 
                 {/* Title */}
-                <span className="text-xs text-gray-500 font-ligth md:text-sm font-extralight">
+                <span className="text-xs md:text-sm font-medium">
                   { hit.title }
                 </span>
               
