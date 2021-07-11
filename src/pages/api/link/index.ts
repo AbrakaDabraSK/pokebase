@@ -10,7 +10,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   switch (req.method) {
     case HTTPRequestMethods.GET:
       try {
-        const data = await new ListOfLinks().get(0,12)
+        const page: number = (req.query.page || 0) as number
+        const total: number = (req.query.total || 8) as number
+        const skip: number = page * total
+        const take: number = (skip + 1) + total
+        const data = await new ListOfLinks().get(skip, take)
 
         return res.status(200).json(data)
       } catch(error) {

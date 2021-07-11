@@ -9,7 +9,6 @@ export interface CrawlerLinkResponse {
   desc: string,
   keywords: string
 }
-
 export interface Poke {
   id: string,
   url: string,
@@ -23,13 +22,12 @@ export interface Poke {
   updatedAt: number
 }
 export interface NewsFeedCardProps {
-  poke: Poke
+  poke: Poke,
+  revalidate?: Function
 }
-
 export interface YoutubeAPIInterface {
   key: string
 }
-
 export interface YTResponse {
   url: string,
   domain: string,
@@ -37,4 +35,16 @@ export interface YTResponse {
   title: string,
   desc: string,
   keywords: string
+}
+export interface LinkInterface {
+  indexName: string
+}
+export interface LinkIndexInterface {
+  indexName: string,
+  terms: string
+}
+export interface NewsFeedCardMetaProps {
+  createdAt: number, 
+  updatedAt: number, 
+  totalClicks: number 
 }

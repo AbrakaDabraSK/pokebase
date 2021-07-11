@@ -9,7 +9,7 @@ export default class ListOfLinks {
         .order('updatedAt', { ascending: false })
         .range(skip, take)
 
-      return data
+      return data??[]
     } catch(error) {
       throw new Error(error)
     }

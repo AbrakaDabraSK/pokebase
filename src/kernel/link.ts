@@ -1,8 +1,11 @@
 import client from '../client'
+import searchClient from '../index'
 import Crawler from '../utils/crawler'
 import YoutubeAPI from '../utils/youtubeAPI'
 
 import { 
+  Poke,
+  LinkInterface,
   CrawlerLinkResponse,
   YTResponse
 } from '../types'
@@ -11,8 +14,9 @@ import {
   getDomainFromURL
 } from '../utils/helpers'
 
+export default class Link implements LinkInterface {
+  readonly indexName: string = 'link'
 
-export default class Link {
   public async hasURL(url: string) {
     try {
       const { data } = await client
@@ -69,6 +73,8 @@ export default class Link {
       const { data } = await client
         .from('link')
         .insert([meta])
+      
+      await this.createIndex(data[0])
 
       return data
     } catch(error) {
@@ -83,9 +89,21 @@ export default class Link {
         .from('link')
         .insert([meta])
 
+      await this.createIndex(data[0])
+
       return data
     } catch(error) {
       throw new Error(error)
     }
+  }
+
+  async createIndex(data: Poke) {
+    const index = searchClient.initIndex(this.indexName)
+    const objectID: string = data.id
+    const objectData = {
+      objectID,
+      ...data
+    }
+    await index.saveObjects([objectData])
   }
 }

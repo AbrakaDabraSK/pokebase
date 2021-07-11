@@ -1,19 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import ListOfLinks from '../../kernel/listOfLinks'
+import LinkIndex from '../../../kernel/linkIndex'
 
 import { 
   HTTPRequestMethods
-} from '../../enums'
+} from '../../../enums'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
-    case HTTPRequestMethods.GET:
+    case HTTPRequestMethods.POST:
       try {
-        const page: number = (req.query.page || 0) as number
-        const total: number = (req.query.total || 8) as number
-        const skip: number = page * total
-        const take: number = (skip + 1) + total
-        const data = await new ListOfLinks().get(skip, take)
+        const { terms } = req.body
+
+        if (!terms.length)
+          return res.status(400).json({ message: 'Terms must not be empty' })
+
+        const data = await new LinkIndex(terms).search()
 
         return res.status(200).json(data)
       } catch(error) {
