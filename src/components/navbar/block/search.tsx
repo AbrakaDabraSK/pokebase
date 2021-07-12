@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
 
-import Meta from '../card/meta'
+import Meta from './meta/meta'
 
 const Search: React.FC = () => {
   const [terms, setTerms] = useState('')
@@ -55,7 +55,7 @@ const Search: React.FC = () => {
           onChange={e => setTerms(e.target.value)}
         />
         <div 
-          className="absolute left-0 right-0 bg-white shadow-sm"
+          className="absolute left-0 right-0 overflow-y-scroll bg-white shadow-sm max-h-60 md:max-h-72 2xl:max-h-96"
           style={{ top: '105%' }}
         >
           {hits?.map((hit) => (
@@ -65,33 +65,9 @@ const Search: React.FC = () => {
               href={hit.url}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={e => newClick(hit.id)}
+              onClick={() => newClick(hit.id)}
             >
-              {/* Image */}
-              {hit.image && (
-                <div 
-                  className="hidden w-12 h-12 mr-2 bg-center bg-no-repeat bg-cover rounded-full md:inline"
-                  style={{
-                    backgroundImage: `url('${hit.image}')`,
-                  }}
-                ></div>
-              )}
-
-              {/* Info */}
-              <div className="flex flex-col">
-
-                {/* Title */}
-                <span className="text-xs md:text-sm font-medium">
-                  { hit.title }
-                </span>
-              
-                {/* Meta */}
-                <Meta 
-                  createdAt={hit.createdAt}
-                  updatedAt={hit.updatedAt}
-                  totalClicks={hit.totalClicks}
-                />
-              </div>
+              <Meta hit={hit} />
             </a>
           ))}
         </div>

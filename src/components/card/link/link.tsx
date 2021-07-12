@@ -3,15 +3,15 @@ import Axios from 'axios'
 import Image from './block/image'
 import Domain from './block/domain'
 import Title from './block/title'
-import Meta from '../meta'
+import Meta from './block/meta/meta'
 import Desc from './block/desc'
 import Keywords from './block/keywords'
 
 import {
-  NewsFeedCardProps
+  LinkCardProps
 } from '../../../types'
 
-const NewsFeedCard: React.FC<NewsFeedCardProps> = ({ poke, revalidate }) => {
+const LinkCard: React.FC<LinkCardProps> = ({ poke, revalidate }) => {
   const newClick = async (id: string) => {
     if (id.length < 3) return null
 
@@ -61,4 +61,4 @@ const NewsFeedCard: React.FC<NewsFeedCardProps> = ({ poke, revalidate }) => {
   )
 }
 
-export default NewsFeedCard
+export default LinkCard

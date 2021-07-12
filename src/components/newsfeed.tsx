@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSWRInfinite } from 'swr'
 
-import NewsFeedCard from './card/newsFeed/newsFeed'
+import LinkCard from './card/link/link'
 
 import {
   Poke
@@ -50,7 +50,7 @@ export default function NewsFeed() {
     <div className="flex-auto w-full">
       {isInitialLoading && <p className="text-lg text-center">Loading...</p>}
       {pokes?.map(poke => (
-        <NewsFeedCard
+        <LinkCard
           key={poke.id}
           poke={poke} 
           revalidate={revalidate}

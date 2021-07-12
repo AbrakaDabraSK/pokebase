@@ -1,14 +1,32 @@
-export interface HtmlContentParserInterface {
-  $: any
+/**
+* Component
+*/
+
+/* LinkCard */
+export interface LinkCardProps {
+  poke: Poke,
+  revalidate?: Function
 }
-export interface CrawlerLinkResponse {
-  url: string,
-  domain: string,
-  image: string,
-  title: string,
-  desc: string,
-  keywords: string
+export interface LinkCardMetaProps {
+  createdAt: number, 
+  updatedAt: number, 
+  totalClicks: number 
 }
+export interface LinkCardMetaPostedByProps {
+  createdAt: number
+}
+export interface LinkCardMetaLastViewedProps {
+  updatedAt: number
+}
+export interface LinkCardMetaPokesProps {
+  totalClicks: number
+}
+
+/**
+* Entity
+*/
+
+/* Poke */
 export interface Poke {
   id: string,
   url: string,
@@ -21,10 +39,25 @@ export interface Poke {
   createdAt: number,
   updatedAt: number
 }
-export interface NewsFeedCardProps {
-  poke: Poke,
-  revalidate?: Function
+
+/**
+* Kernel
+*/
+
+/* Link */
+export interface LinkInterface {
+  indexName: string
 }
+export interface LinkIndexInterface {
+  indexName: string,
+  terms: string
+}
+
+/**
+* Util
+*/
+
+/* YoutubeAPI */
 export interface YoutubeAPIInterface {
   key: string
 }
@@ -36,15 +69,18 @@ export interface YTResponse {
   desc: string,
   keywords: string
 }
-export interface LinkInterface {
-  indexName: string
+
+/* HtmlContentParser */
+export interface HtmlContentParserInterface {
+  $: any
 }
-export interface LinkIndexInterface {
-  indexName: string,
-  terms: string
-}
-export interface NewsFeedCardMetaProps {
-  createdAt: number, 
-  updatedAt: number, 
-  totalClicks: number 
+
+/* Crawler */
+export interface CrawlerLinkResponse {
+  url: string,
+  domain: string,
+  image: string,
+  title: string,
+  desc: string,
+  keywords: string
 }

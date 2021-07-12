@@ -7,6 +7,7 @@ export default class ListOfLinks {
         .from('link')
         .select('*')
         .order('updatedAt', { ascending: false })
+        .limit(take)
         .range(skip, take)
 
       return data??[]

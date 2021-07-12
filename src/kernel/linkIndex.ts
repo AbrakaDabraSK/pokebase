@@ -6,6 +6,7 @@ import {
 } from '../types'
 
 export default class LinkIndex implements LinkIndexInterface {
+  readonly attr: Array<string> = ['id', 'url', 'image', 'title']
   readonly indexName: string = 'link'
   readonly terms: string = ''
 
@@ -18,7 +19,7 @@ export default class LinkIndex implements LinkIndexInterface {
       const parsedTerms = sanitizer.sanitize.keepSpace(this.terms)
       const index = searchClient.initIndex(this.indexName)
       const { hits } = await index.search(parsedTerms, {
-        attributesToRetrieve: ['url','image','title','totalClicks'],
+        attributesToRetrieve: this.attr,
         hitsPerPage: 50,
       })
 
