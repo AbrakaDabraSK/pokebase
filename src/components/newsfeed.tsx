@@ -37,7 +37,6 @@ export default function NewsFeed() {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting === true) {
-          console.log('Reached bottom of post')
           setPage(page + 1)
           observer.unobserve(element)
         }
@@ -50,9 +49,9 @@ export default function NewsFeed() {
   return (
     <div className="flex-auto w-full">
       {isInitialLoading && <p className="text-lg text-center">Loading...</p>}
-      {pokes?.map((poke, index) => (
+      {pokes?.map(poke => (
         <NewsFeedCard
-          key={index}
+          key={poke.id}
           poke={poke} 
           revalidate={revalidate}
         />
