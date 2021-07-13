@@ -1,21 +1,14 @@
 import Image from './block/image'
+import Body from './block/body'
 import Title from './block/title'
 
 const Meta: React.FC<any> = ({ hit }) => {
   return (
     <>
-      {/* Image */}
       <Image src={hit.image} />
-
-      {/* Info */}
-      <div className="flex flex-col">
-
-        {/* Title */}
+      <Body>
         <Title value={hit.title} />
-      
-        {/* Meta */}
-
-      </div>
+      </Body>
     </>
   )
 }

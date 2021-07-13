@@ -1,6 +1,7 @@
 import Axios from 'axios'
 
 import Image from './block/image'
+import Body from './block/body'
 import Domain from './block/domain'
 import Title from './block/title'
 import Meta from './block/meta/meta'
@@ -28,33 +29,20 @@ const LinkCard: React.FC<LinkCardProps> = ({ poke, revalidate }) => {
       href={poke.url}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={e => newClick(poke.id)}
+      onClick={() => newClick(poke.id)}
     >
-      {/* Image */}
       <Image src={poke.image} />
-
-      {/* Body */}
-      <div className="w-full h-auto px-3 pb-4 mt-2">
-        {/* Domain */}
+      <Body>
         <Domain name={poke.domain} />
-
-        {/* Title */}
         <Title value={poke.title} />
-
-        {/* Meta */}
         <Meta 
           createdAt={poke.createdAt}
           updatedAt={poke.updatedAt}
           totalClicks={poke.totalClicks}
         />
-        
-        {/* Desc */}
         <Desc value={poke.desc} />
-
-        {/* Keywords */}
         <Keywords value={poke.keywords} />
-        
-      </div>
+      </Body>
     </a>
   )
 }

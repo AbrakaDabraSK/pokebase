@@ -26,7 +26,6 @@ const Search: React.FC = () => {
             terms
           })
           setHits(data)
-          console.log(data)
         } catch (error) {
           console.error(error)
         }

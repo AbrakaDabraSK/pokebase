@@ -1,5 +1,4 @@
 const Image: React.FC<any> = ({ src }) => {
-  console.log(src)
   return (
     <>
       {(src ? (
