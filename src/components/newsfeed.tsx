@@ -66,7 +66,7 @@ export default function NewsFeed() {
   }
   
   return (
-    <section className="sm:px-24 md:px-36 lg:px-80 xl:px-0">
+    <section className="sm:px-24 lg:px-80 2xl:px-0">
       <header>
         <h3 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black">
           Today
