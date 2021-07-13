@@ -53,18 +53,6 @@ export default function NewsFeed() {
     observer.observe(element)
   }
 
-  const handleScroll = (e) => {
-    let element = e.target
-    
-    console.log('element.scrollHeight '+element.scrollHeight)
-    console.log('element.scrollTop '+element.scrollTop)
-    console.log('element.clientHeight '+element.clientHeight)
-
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-      setPage(page + 1)
-    }
-  }
-  
   return (
     <section className="sm:px-24 lg:px-80 2xl:px-0">
       <header>
