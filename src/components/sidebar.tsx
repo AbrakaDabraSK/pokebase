@@ -1,5 +1,5 @@
-export default function Sidebar() {
-  return (
-    <div className="flex-1"></div>
-  )
-}
+const Sidebar: React.FC = () => (
+  <section className="hidden md:block"></section>
+)
+
+export default Sidebar

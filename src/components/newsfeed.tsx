@@ -49,7 +49,7 @@ export default function NewsFeed() {
   }
   
   return (
-    <section className="flex-auto w-full">
+    <section>
       <header>
         <h3 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black">
           Today

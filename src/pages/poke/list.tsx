@@ -112,7 +112,7 @@ export default function List() {
                         </td>
                         <td className="px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
                           <a 
-                            className="px-2 py-2 text-xs font-semibold text-white uppercase bg-green-500 border border-green-500 rounded"
+                            className="px-2 py-2 text-xs font-semibold text-white uppercase bg-green-500 border border-green-500 rounded-md"
                             href={poke.url}
                             target="_blank"
                             rel="noopener noreferrer"
