@@ -10,10 +10,18 @@ export default class LinkIndex implements LinkIndexInterface {
   readonly indexName: string = 'link'
   readonly terms: string = ''
 
+  /**
+   * 
+   * @param terms 
+   */
   constructor(terms: string) {
     this.terms = terms;
   }
 
+  /**
+   * 
+   * @returns 
+   */
   public async search() {
     try {
       const parsedTerms = sanitizer.sanitize.keepSpace(this.terms)

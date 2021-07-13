@@ -1,7 +1,12 @@
 import axios from 'axios'
 
 export default class Request {
-  async getHTMLContent(url: string) {
+  /**
+   * 
+   * @param url 
+   * @returns 
+   */
+  public async getHTMLContent(url: string) {
     try {
       const res = await axios({
         url,

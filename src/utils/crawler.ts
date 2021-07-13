@@ -10,7 +10,12 @@ import {
 } from '../types'
 
 export default class Crawler {
-  async link(url: string) {
+  /**
+   * 
+   * @param url 
+   * @returns 
+   */
+  public async link(url: string) {
     try {
       const htmlContent = await new Request().getHTMLContent(url)
       const parseContent = new HtmlContentParser(htmlContent)

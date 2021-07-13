@@ -8,11 +8,19 @@ import {
 export default class YoutubeAPI implements YoutubeAPIInterface {
   readonly key: string
 
+  /**
+   * 
+   * @param url 
+   */
   constructor(url: string) {
     this.key = url.match(/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/)[1]
   }
 
-  async get() {
+  /**
+   * 
+   * @returns 
+   */
+  public async get() {
     try {
       const video = await this.find()
 
@@ -31,6 +39,10 @@ export default class YoutubeAPI implements YoutubeAPIInterface {
     }
   }
 
+  /**
+   * 
+   * @returns 
+   */
   private async find() {
     const url = this.api()
 
@@ -46,14 +58,27 @@ export default class YoutubeAPI implements YoutubeAPIInterface {
     }
   }
 
+  /**
+   * 
+   * @returns 
+   */
   private api(): string {
     return process.env.YOUTUBE_ENDPOINT+this.key+'&key='+process.env.YOUTUBE_API_KEY
   }
 
+  /**
+   * 
+   * @returns 
+   */
   private url(): string {
     return process.env.YOUTUBE_BASE_URL+this.key
   }
 
+  /**
+   * 
+   * @param data 
+   * @returns 
+   */
   private image(data: any): string {
     if (typeof data.items[0].snippet.thumbnails.maxres !== 'undefined') {
       return data.items[0].snippet.thumbnails.maxres.url
@@ -73,14 +98,29 @@ export default class YoutubeAPI implements YoutubeAPIInterface {
     return ''
   }
 
+  /**
+   * 
+   * @param data 
+   * @returns 
+   */
   private title(data: any): string {
     return data.items[0].snippet.title
   }
 
+  /**
+   * 
+   * @param data 
+   * @returns 
+   */
   private desc(data: any): string {
     return data.items[0].snippet.description
   }
 
+  /**
+   * 
+   * @param data 
+   * @returns 
+   */
   private tags(data: any): string {
     const tags = data.items[0].snippet.tags
     return typeof tags === "undefined" ? '' : tags.join(',')

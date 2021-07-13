@@ -12,9 +12,7 @@ import {
 dayjs.extend(relativeTime)
 
 const Meta: React.FC<LinkCardMetaProps> = ({ 
-  createdAt, 
-  updatedAt, 
-  totalClicks 
+  createdAt, updatedAt, totalClicks 
 }) => {
   return (
     <small className="text-gray-500">

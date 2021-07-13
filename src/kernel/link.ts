@@ -17,6 +17,11 @@ import {
 export default class Link implements LinkInterface {
   readonly indexName: string = 'link'
 
+  /**
+   * 
+   * @param url 
+   * @returns 
+   */
   public async hasURL(url: string) {
     try {
       const { data } = await database
@@ -31,6 +36,11 @@ export default class Link implements LinkInterface {
     }
   }
 
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
   public async byID(id: string) {
     try {
       const { data } = await database
@@ -45,6 +55,11 @@ export default class Link implements LinkInterface {
     }
   }
 
+  /**
+   * 
+   * @param url 
+   * @returns 
+   */
   public async create(url: string) {
     try {
       if (getDomainFromURL(url) === process.env.YOUTUBE_DOMAIN)
@@ -56,6 +71,10 @@ export default class Link implements LinkInterface {
     }
   }
 
+  /**
+   * 
+   * @param id 
+   */
   public async clicked(id: string) {
     try {
       await database.rpc('increment', { 
@@ -67,6 +86,11 @@ export default class Link implements LinkInterface {
     }
   }
 
+  /**
+   * 
+   * @param url 
+   * @returns 
+   */
   private async createFromURL(url: string) {
     try {
       const meta: CrawlerLinkResponse = await new Crawler().link(url)
@@ -82,6 +106,11 @@ export default class Link implements LinkInterface {
     }
   }
 
+  /**
+   * 
+   * @param url 
+   * @returns 
+   */
   private async createFromYoutube(url: string) {
     try {
       const meta: YTResponse = await new YoutubeAPI(url).get()
@@ -97,7 +126,11 @@ export default class Link implements LinkInterface {
     }
   }
 
-  async createIndex(data: Poke) {
+  /**
+   * 
+   * @param data 
+   */
+  private async createIndex(data: Poke) {
     const index = searchdatabase.initIndex(this.indexName)
     const objectID: string = data.id
     const objectData = {

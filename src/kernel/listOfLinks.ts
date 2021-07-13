@@ -7,7 +7,16 @@ import {
 import {
   ListOfLinksInterface
 } from '../types'
+
+import {
+  startIndex,
+  endIndex
+} from '../utils/helpers'
 export default class ListOfLinks implements ListOfLinksInterface {
+  /**
+   * 
+   * @returns
+   */
   public async total() {
     try {
       const { count } = await database
@@ -20,6 +29,14 @@ export default class ListOfLinks implements ListOfLinksInterface {
     }
   }
 
+  /**
+   * 
+   * @param perPage 
+   * @param currentPage 
+   * @param column 
+   * @param direction 
+   * @returns
+   */
   public async get(
     perPage: number,
     currentPage: number,
@@ -27,13 +44,13 @@ export default class ListOfLinks implements ListOfLinksInterface {
     direction: string
   ) {
     try {
-      const startIndex = ((currentPage * perPage) - perPage) + 1
-      const endIndex = (currentPage * perPage)
-
       const { data } = await database
         .from('link')
         .select('*')
-        .range(startIndex, endIndex)
+        .range(
+          startIndex(currentPage, perPage), 
+          endIndex(currentPage, perPage)
+        )
         .order(column, { ascending: direction === Direction.ASC??false })
       
       return data??[]

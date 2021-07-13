@@ -6,11 +6,19 @@ import {
 export default class HtmlContentParser implements HtmlContentParserInterface {
   readonly $: any
 
+  /**
+   * 
+   * @param htmlContent 
+   */
   constructor(htmlContent: string) {
     this.$ = cheerio.load(htmlContent);
   }
 
-  metaImage(): string {
+  /**
+   * 
+   * @returns 
+   */
+  public metaImage(): string {
     if (this.$('meta[property="og:image"]').attr('content')) {
       return this.$('meta[property="og:image"]').attr('content').trim()
     }
@@ -23,7 +31,11 @@ export default class HtmlContentParser implements HtmlContentParserInterface {
     return ''
   }
 
-  metaTitle(): string {
+  /**
+   * 
+   * @returns 
+   */
+   public metaTitle(): string {
     if (this.$('title').text().trim()) {
       return this.$('title').text().trim()
     }
@@ -39,7 +51,11 @@ export default class HtmlContentParser implements HtmlContentParserInterface {
     return ''
   }
 
-  metaDesc(): string {
+  /**
+   * 
+   * @returns 
+   */
+  public metaDesc(): string {
     if (this.$('meta[name="description"]').attr('content')) {
       return this.$('meta[name="description"]').attr('content').trim()
     }
@@ -55,7 +71,11 @@ export default class HtmlContentParser implements HtmlContentParserInterface {
     return ''
   }
 
-  metaKeywords() {
+  /**
+   * 
+   * @returns 
+   */
+  public metaKeywords() {
     if (this.$('meta[name="keywords"]').attr('content')) {
       return this.$('meta[name="keywords"]').attr('content').trim()
     }
