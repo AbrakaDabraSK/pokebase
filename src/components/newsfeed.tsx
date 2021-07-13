@@ -16,7 +16,7 @@ export default function NewsFeed() {
     setSize: setPage,
     isValidating,
     revalidate,
-  } = useSWRInfinite<Poke[]>((index) => `/newsfeed?currentPage=${index}`)
+  } = useSWRInfinite<Poke[]>((index) => `/newsfeed?currentPage=${index + 1}`)
 
   const isInitialLoading = !data && !error
   const pokes: Poke[] = data ? [].concat(...data) : []
