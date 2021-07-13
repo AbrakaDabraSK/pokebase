@@ -49,7 +49,7 @@ export default function NewsFeed() {
   }
   
   return (
-    <div className="flex-auto w-full">
+    <section className="flex-auto w-full">
       <header>
         <h3 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black">
           Today
@@ -66,6 +66,6 @@ export default function NewsFeed() {
       {isValidating && pokes.length > 0 && (
         <p className="text-center text-ms">Loading more...</p>
       )}
-    </div>
+    </section>
   )
 }
