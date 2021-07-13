@@ -1,7 +1,11 @@
+import {
+  truncate
+} from '../../../../utils/helpers'
+
 const Desc: React.FC<any> = ({ value }) => {
   return (
     <p className="mt-4 text-sm font-extralight text-black-200">
-      { value }
+      {truncate(value, 900)}
     </p>
   )
 }
