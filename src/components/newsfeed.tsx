@@ -64,7 +64,7 @@ export default function NewsFeed() {
         />
       ))}
       {isValidating && pokes.length > 0 && (
-        <p className="text-center text-ms">Loading More...</p>
+        <p className="text-center text-ms">Loading more...</p>
       )}
     </div>
   )
