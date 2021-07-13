@@ -16,14 +16,8 @@ const Meta: React.FC<LinkCardMetaProps> = ({
 }) => {
   return (
     <small className="text-gray-500">
-      <div className="hidden sm:inline">
-        {/* Posted by */}
-        <PostedBy createdAt={createdAt} />
-
-        {/* Last viewed */}
-        <LastViewed updatedAt={updatedAt} />
-      </div>
-      {/* Pokes */}
+      <PostedBy createdAt={createdAt} />
+      <LastViewed updatedAt={updatedAt} />
       <Pokes totalClicks={totalClicks} />
     </small>
   )

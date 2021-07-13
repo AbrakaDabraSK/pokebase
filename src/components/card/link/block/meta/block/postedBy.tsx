@@ -9,7 +9,7 @@ dayjs.extend(relativeTime)
 
 const Meta: React.FC<LinkCardMetaPostedByProps> = ({ createdAt }) => {
   return (
-    <>
+    <div className="hidden sm:inline">
       <i className="mr-1 text-green-400 bx bxs-alarm-snooze"></i>
       <span className="mr-1 font-medium text-md">
         Posted by
@@ -17,7 +17,7 @@ const Meta: React.FC<LinkCardMetaPostedByProps> = ({ createdAt }) => {
       <time className="mr-3">
         {dayjs(createdAt).fromNow()}
       </time>
-    </>
+    </div>
   )
 }
 

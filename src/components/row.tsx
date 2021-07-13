@@ -1,5 +1,5 @@
 const Row: React.FC = ({ children }) => (
-  <section className="grid grid-cols-1 gap-1 mt-4 md:gap-4 sm:grid-cols-2 md:grid-cols-3 md-gap-8">
+  <section className="grid grid-cols-1 grid-rows-1 xl:grid-cols-3 xl:gap-4">
     {children}
   </section>
 )

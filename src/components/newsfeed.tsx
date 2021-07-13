@@ -28,6 +28,9 @@ export default function NewsFeed() {
 
     const id = pokes[pokes.length - 1].id
 
+    console.log('id '+id)
+    console.log('observedPoke '+observedPoke)
+    
     if (id !== observedPoke) {
       setObservedPoke(id)
       observeElement(document.getElementById(id))
@@ -35,9 +38,11 @@ export default function NewsFeed() {
   }, [pokes])
 
   const observeElement = (element: HTMLElement) => {
+    console.log('element '+element)
     if (!element) return
     const observer = new IntersectionObserver(
       (entries) => {
+        console.log('isIntersecting '+entries[0].isIntersecting)
         if (entries[0].isIntersecting === true) {
           setPage(page + 1)
           observer.unobserve(element)
@@ -47,9 +52,21 @@ export default function NewsFeed() {
     )
     observer.observe(element)
   }
+
+  const handleScroll = (e) => {
+    let element = e.target
+    
+    console.log('element.scrollHeight '+element.scrollHeight)
+    console.log('element.scrollTop '+element.scrollTop)
+    console.log('element.clientHeight '+element.clientHeight)
+
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      setPage(page + 1)
+    }
+  }
   
   return (
-    <section>
+    <section className="sm:px-24 md:px-36 lg:px-80 xl:px-0">
       <header>
         <h3 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black">
           Today
