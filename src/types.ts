@@ -22,6 +22,14 @@ export interface LinkCardMetaPokesProps {
   totalClicks: number
 }
 
+/* LinkCard */
+export interface PaginationProps {
+  count: number
+  perPage: number
+  currentPage: number
+  setCurrentPage: Function
+}
+
 /**
 * Entity
 */
@@ -51,6 +59,11 @@ export interface LinkInterface {
 export interface LinkIndexInterface {
   indexName: string,
   terms: string
+}
+/* ListOfLinks */
+export interface ListOfLinksInterface {
+  total: Function,
+  get: Function
 }
 
 /**

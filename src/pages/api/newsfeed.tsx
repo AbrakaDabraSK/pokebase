@@ -2,19 +2,25 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import ListOfLinks from '../../kernel/listOfLinks'
 
 import { 
-  HTTPRequestMethods
+  HTTPRequestMethods,
+  Direction,
+  LinkColumns
 } from '../../enums'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case HTTPRequestMethods.GET:
       try {
-        const page: number = (req.query.page || 0) as number
-        const total: number = (req.query.total || 8) as number
-        const skip: number = page * total
-        const take: number = (skip + 1) + total
-        const data = await new ListOfLinks().get(skip, take)
-
+        const perPage: number = (req.query.perPage || 8) as number
+        const currentPage: number = (req.query.currentPage || 1) as number
+        const column: string = (req.query.column || LinkColumns.UPDATED) as string
+        const direction: string = (req.query.direction || Direction.DESC) as string
+        const data = await new ListOfLinks().get(
+          perPage, 
+          currentPage,
+          column,
+          direction
+        )
         return res.status(200).json(data)
       } catch(error) {
         return res.status(500).json({ message: error.message })

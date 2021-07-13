@@ -16,7 +16,7 @@ export default function NewsFeed() {
     setSize: setPage,
     isValidating,
     revalidate,
-  } = useSWRInfinite<Poke[]>((index) => `/newsfeed?page=${index}`)
+  } = useSWRInfinite<Poke[]>((index) => `/newsfeed?currentPage=${index}`)
 
   const isInitialLoading = !data && !error
   const pokes: Poke[] = data ? [].concat(...data) : []
@@ -48,6 +48,11 @@ export default function NewsFeed() {
   
   return (
     <div className="flex-auto w-full">
+      <header>
+        <h3 className="mt-1 mb-2 text-2xl font-bold text-black">
+          Today
+        </h3>
+      </header>
       {isInitialLoading && <p className="text-lg text-center">Loading...</p>}
       {pokes?.map(poke => (
         <LinkCard

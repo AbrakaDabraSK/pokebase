@@ -22,7 +22,7 @@ class MyDocument extends Document {
           <link rel="icon" type="image/svg+xml" href="/vercel.svg" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
             rel="stylesheet"
           />
           <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"></link>

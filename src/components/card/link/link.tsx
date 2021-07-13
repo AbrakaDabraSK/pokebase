@@ -13,8 +13,6 @@ import {
 
 const LinkCard: React.FC<LinkCardProps> = ({ poke, revalidate }) => {
   const newClick = async (id: string) => {
-    if (id.length < 3) return null
-
     try {
       await Axios.get('/link/'+id+'/clicked')
       if (revalidate) revalidate()

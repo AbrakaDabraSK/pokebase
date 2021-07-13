@@ -1,5 +1,5 @@
 import sanitizer from 'string-sanitizer'
-import searchClient from '../index'
+import searchClient from '../searchClient'
 
 import { 
   LinkIndexInterface
@@ -23,7 +23,7 @@ export default class LinkIndex implements LinkIndexInterface {
         hitsPerPage: 50,
       })
 
-      return hits
+      return hits??[]
     } catch(error) {
       throw new Error(error)
     }

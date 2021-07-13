@@ -1,5 +1,5 @@
-import client from '../client'
-import searchClient from '../index'
+import database from '../database'
+import searchdatabase from '../searchClient'
 import Crawler from '../utils/crawler'
 import YoutubeAPI from '../utils/youtubeAPI'
 
@@ -19,7 +19,7 @@ export default class Link implements LinkInterface {
 
   public async hasURL(url: string) {
     try {
-      const { data } = await client
+      const { data } = await database
         .from('link')
         .select("id")
         .eq('url', url)
@@ -33,7 +33,7 @@ export default class Link implements LinkInterface {
 
   public async byID(id: string) {
     try {
-      const { data } = await client
+      const { data } = await database
         .from('link')
         .select("*")
         .eq('id', id)
@@ -58,7 +58,7 @@ export default class Link implements LinkInterface {
 
   public async clicked(id: string) {
     try {
-      await client.rpc('increment', { 
+      await database.rpc('increment', { 
         x: 1, 
         row_id: id 
       })
@@ -70,7 +70,7 @@ export default class Link implements LinkInterface {
   private async createFromURL(url: string) {
     try {
       const meta: CrawlerLinkResponse = await new Crawler().link(url)
-      const { data } = await client
+      const { data } = await database
         .from('link')
         .insert([meta])
       
@@ -85,7 +85,7 @@ export default class Link implements LinkInterface {
   private async createFromYoutube(url: string) {
     try {
       const meta: YTResponse = await new YoutubeAPI(url).get()
-      const { data } = await client
+      const { data } = await database
         .from('link')
         .insert([meta])
 
@@ -98,7 +98,7 @@ export default class Link implements LinkInterface {
   }
 
   async createIndex(data: Poke) {
-    const index = searchClient.initIndex(this.indexName)
+    const index = searchdatabase.initIndex(this.indexName)
     const objectID: string = data.id
     const objectData = {
       objectID,
