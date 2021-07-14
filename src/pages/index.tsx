@@ -15,11 +15,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <BaseContainer>
-        <Row>
-          <Explore />
-          <NewsFeed />
-          <Sidebar />
-        </Row>
+        <Explore />
+        <NewsFeed />
+        <Sidebar />
       </BaseContainer>
     </>
   )

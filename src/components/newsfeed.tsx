@@ -12,8 +12,8 @@ export default function NewsFeed() {
   const {
     data,
     error,
-    size: page,
-    setSize: setPage,
+    size,
+    setSize,
     isValidating,
     revalidate,
   } = useSWRInfinite<Poke[]>((index) => `/newsfeed?currentPage=${index + 1}`, {
@@ -28,9 +28,6 @@ export default function NewsFeed() {
 
     const id = pokes[pokes.length - 1].id
 
-    console.log('id '+id)
-    console.log('observedPoke '+observedPoke)
-    
     if (id !== observedPoke) {
       setObservedPoke(id)
       observeElement(document.getElementById(id))
@@ -38,13 +35,11 @@ export default function NewsFeed() {
   }, [pokes])
 
   const observeElement = (element: HTMLElement) => {
-    console.log('element '+element)
     if (!element) return
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log('isIntersecting '+entries[0].isIntersecting)
         if (entries[0].isIntersecting === true) {
-          setPage(page + 1)
+          setSize(size + 1)
           observer.unobserve(element)
         }
       },
@@ -54,19 +49,17 @@ export default function NewsFeed() {
   }
 
   return (
-    <section className="sm:px-24 lg:px-80 2xl:px-0">
+    <section className="flex-grow w-full p-3 sm:max-w-5xl">
       <header>
         <h3 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black">
           Today
         </h3>
       </header>
       {isInitialLoading && <p className="text-lg text-center">Loading...</p>}
-      {pokes?.map(poke => (
-        <LinkCard
-          key={poke.id}
-          poke={poke} 
-          revalidate={revalidate}
-        />
+      {pokes?.map((poke, index) => (
+        <div key={index} id={poke.id}>
+          <LinkCard poke={poke}  revalidate={revalidate} />
+        </div>
       ))}
       {isValidating && pokes.length > 0 && (
         <p className="text-center text-ms">Loading more...</p>
