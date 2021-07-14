@@ -29,8 +29,6 @@ const NewsFeed: React.FC = () => {
   }, [load]);
 
   useEffect(() => {
-    console.log('element '+element)
-
     const currentElement = element;
     const hasIOSupport = !!window.IntersectionObserver
 
