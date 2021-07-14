@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Axios from 'axios'
 
 import BaseContainer from '../../components/container/base'
-import Row from '../../components/row'
 
 export default function Create() {
   const [url, setUrl] = useState('')
