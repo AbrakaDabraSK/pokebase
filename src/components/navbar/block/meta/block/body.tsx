@@ -1,4 +1,4 @@
-const Body: React.FC = ({ children }) => (
+const Body: React.FC<any> = ({ children }) => (
   <div className="flex flex-col">
     {children}
   </div>

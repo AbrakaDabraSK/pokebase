@@ -14,6 +14,13 @@ import {
   getDomainFromURL
 } from '../utils/helpers'
 
+/**
+ *
+ *
+ * @export
+ * @class Link
+ * @implements {LinkInterface}
+ */
 export default class Link implements LinkInterface {
   readonly indexName: string = 'link'
 

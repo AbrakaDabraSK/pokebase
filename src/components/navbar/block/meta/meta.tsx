@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import Image from './block/image'
 import Body from './block/body'
 import Title from './block/title'

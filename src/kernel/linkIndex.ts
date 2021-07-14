@@ -5,6 +5,13 @@ import {
   LinkIndexInterface
 } from '../types'
 
+/**
+ *
+ *
+ * @export
+ * @class LinkIndex
+ * @implements {LinkIndexInterface}
+ */
 export default class LinkIndex implements LinkIndexInterface {
   readonly attr: Array<string> = ['id', 'url', 'image', 'title']
   readonly indexName: string = 'link'

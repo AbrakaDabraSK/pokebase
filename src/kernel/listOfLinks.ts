@@ -35,7 +35,7 @@ export default class ListOfLinks implements ListOfLinksInterface {
    * @param currentPage 
    * @param column 
    * @param direction 
-   * @returns
+   * @returns 
    */
   public async get(
     perPage: number,
@@ -47,11 +47,11 @@ export default class ListOfLinks implements ListOfLinksInterface {
       const { data } = await database
         .from('link')
         .select('*')
+        .order(column, { ascending: direction === Direction.ASC??false })
         .range(
           startIndex(currentPage, perPage), 
           endIndex(currentPage, perPage)
         )
-        .order(column, { ascending: direction === Direction.ASC??false })
       
       return data??[]
     } catch(error) {

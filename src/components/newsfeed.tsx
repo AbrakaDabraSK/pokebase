@@ -7,7 +7,7 @@ import {
   Poke
 } from '../types'
 
-export default function NewsFeed() {
+const NewsFeed: React.FC = () => {
   const [ observedPoke, setObservedPoke] = useState('')
   const {
     data,
@@ -21,6 +21,7 @@ export default function NewsFeed() {
   })
 
   const isInitialLoading = !data && !error
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const pokes: Poke[] = data ? [].concat(...data) : []
 
   useEffect(() => {
@@ -28,25 +29,24 @@ export default function NewsFeed() {
 
     const id = pokes[pokes.length - 1].id
 
+    const observeElement = (element: HTMLElement) => {
+      if (!element) return
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting === true) {
+            setSize(size + 1)
+            observer.unobserve(element)
+          }
+        },
+        { threshold: 1 }
+      )
+      observer.observe(element)
+    }
     if (id !== observedPoke) {
       setObservedPoke(id)
       observeElement(document.getElementById(id))
     }
-  }, [pokes])
-
-  const observeElement = (element: HTMLElement) => {
-    if (!element) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting === true) {
-          setSize(size + 1)
-          observer.unobserve(element)
-        }
-      },
-      { threshold: 1 }
-    )
-    observer.observe(element)
-  }
+  }, [pokes, observedPoke, size, setSize])
 
   return (
     <section className="flex-grow w-full p-3 sm:max-w-5xl">
@@ -58,7 +58,7 @@ export default function NewsFeed() {
       {isInitialLoading && <p className="text-lg text-center">Loading...</p>}
       {pokes?.map((poke, index) => (
         <div key={index} id={poke.id}>
-          <LinkCard poke={poke}  revalidate={revalidate} />
+          <LinkCard poke={poke} revalidate={revalidate} />
         </div>
       ))}
       {isValidating && pokes.length > 0 && (
@@ -67,3 +67,5 @@ export default function NewsFeed() {
     </section>
   )
 }
+
+export default NewsFeed

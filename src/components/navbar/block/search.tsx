@@ -14,6 +14,7 @@ const Search: React.FC = () => {
       return
     }
     search()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms])
 
   const search = async () => {
