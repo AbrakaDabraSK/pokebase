@@ -12,10 +12,6 @@ import {
   LinkCardProps
 } from '../../../types'
 
-import {
-  truncate
-} from '../../../../utils/helpers'
-
 const LinkCard: React.FC<LinkCardProps> = ({ poke, revalidate }) => {
   const newClick = async (id: string) => {
     try {
