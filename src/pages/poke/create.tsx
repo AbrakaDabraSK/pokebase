@@ -40,7 +40,7 @@ export default function Create() {
       </Head>
       <BaseContainer>
         <form 
-          className="w-full md:w-8/12"
+          className="w-full mx-3 md:mx-auto md:w-8/12"
           onSubmit={submitForm}
         >
           <fieldset className="flex flex-col items-baseline justify-center bg-white rounded shadow-sm">
