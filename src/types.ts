@@ -4,8 +4,7 @@
 
 /* LinkCard */
 export interface LinkCardProps {
-  poke: Poke,
-  revalidate?: Function
+  poke: Poke
 }
 export interface LinkCardMetaProps {
   createdAt: number, 
@@ -28,6 +27,22 @@ export interface PaginationProps {
   perPage: number
   currentPage: number
   setCurrentPage: Function
+}
+
+/**
+* Context
+*/
+
+/* Observer */
+export interface ObserverContextState {
+  loading: boolean
+  more: boolean,
+  data: Array<any>
+  after: 0
+}
+export interface ObserverContextAction {
+  type: string
+  payload: any
 }
 
 /**

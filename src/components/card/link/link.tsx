@@ -12,11 +12,10 @@ import {
   LinkCardProps
 } from '../../../types'
 
-const LinkCard: React.FC<LinkCardProps> = ({ poke, revalidate }) => {
+const LinkCard: React.FC<LinkCardProps> = ({ poke }) => {
   const newClick = async (id: string) => {
     try {
       await Axios.get('/link/'+id+'/clicked')
-      if (revalidate) revalidate()
     } catch (error) {
       console.error(error)
     }

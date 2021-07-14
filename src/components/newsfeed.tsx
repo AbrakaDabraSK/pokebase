@@ -1,53 +1,56 @@
-import { useState, useEffect } from 'react'
-import { useSWRInfinite } from 'swr'
-
+import { useRef, useContext, useState, useEffect } from 'react'
+import ObserverContext from '../context/observer'
 import LinkCard from './card/link/link'
 
-import {
-  Poke
-} from '../types'
-
 const NewsFeed: React.FC = () => {
-  const [ observedPoke, setObservedPoke] = useState('')
-  const {
-    data,
-    error,
-    size,
-    setSize,
-    isValidating,
-    revalidate,
-  } = useSWRInfinite<Poke[]>((index) => `/newsfeed?currentPage=${index + 1}`, {
-    revalidateAll: true,
-  })
+  const threshold = 0
+  const root = null
+  const rootMargin = '0%'
+  const freezeOnceVisible = false
 
-  const isInitialLoading = !data && !error
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const pokes: Poke[] = data ? [].concat(...data) : []
+  const [entry, setEntry] = useState<IntersectionObserverEntry>()
+
+  const frozen = entry?.isIntersecting && freezeOnceVisible
+
+  const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
+    setEntry(entry)
+    if (entry.isIntersecting) {
+      loader.current()
+    }
+  }
+  
+  const { data, loading, more, load } = useContext(ObserverContext);
+  const loader = useRef(load);
+
+  const [element, setElement] = useState(null);
 
   useEffect(() => {
-    if (!pokes || pokes.length === 0) return
+    loader.current = load;
+  }, [load]);
 
-    const id = pokes[pokes.length - 1].id
+  useEffect(() => {
+    console.log('element '+element)
 
-    const observeElement = (element: HTMLElement) => {
-      if (!element) return
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting === true) {
-            setSize(size + 1)
-            observer.unobserve(element)
-          }
-        },
-        { threshold: 1 }
-      )
-      observer.observe(element)
+    const currentElement = element;
+    const hasIOSupport = !!window.IntersectionObserver
+
+    if (!hasIOSupport || frozen || !currentElement) return
+
+    const observerParams = { threshold, root, rootMargin }
+    const observer = new IntersectionObserver(updateEntry, observerParams)
+
+    if (currentElement) {
+      observer.observe(currentElement);
     }
-    if (id !== observedPoke) {
-      setObservedPoke(id)
-      observeElement(document.getElementById(id))
-    }
-  }, [pokes, observedPoke, size, setSize])
 
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [element])
+  
   return (
     <section className="flex-grow w-full p-3 sm:max-w-5xl">
       <header>
@@ -55,15 +58,20 @@ const NewsFeed: React.FC = () => {
           Today
         </h3>
       </header>
-      {isInitialLoading && <p className="text-lg text-center">Loading...</p>}
-      {pokes?.map((poke, index) => (
-        <div key={index} id={poke.id}>
-          <LinkCard poke={poke} revalidate={revalidate} />
-        </div>
-      ))}
-      {isValidating && pokes.length > 0 && (
-        <p className="text-center text-ms">Loading more...</p>
-      )}
+      <ul>
+        {/** Pokes */}
+        {data.map((poke, index) => (
+          <li key={index}>
+            <LinkCard poke={poke} />
+          </li>
+        ))}
+
+        {/** Loading */}
+        {loading && <li className="p-3 text-lg text-center">Loading...</li>}
+
+        {/** Loading more */}
+        {!loading && more && ( <li ref={setElement}></li> )}
+      </ul>
     </section>
   )
 }
