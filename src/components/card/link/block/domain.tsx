@@ -6,7 +6,7 @@ const Domain: React.FC<any> = ({ name }) => {
       ) : (
         <i className="relative mr-1 inset-0.5 text-md bx bxs-bone"></i>
       ))}
-      { name }
+      <>{ name }</>
     </span>
   )
 }
