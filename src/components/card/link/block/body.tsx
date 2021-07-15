@@ -1,5 +1,5 @@
 const Body: React.FC = ({ children }) => (
-  <section className="w-full h-auto px-3 pb-4 mt-2">
+  <section className="w-full h-auto p-3 shadow-inner">
     {children}
   </section>
 )

@@ -25,6 +25,9 @@ export interface LinkCardHyperLinkProps {
   url: string,
   children?: any
 }
+export interface ShareLinkProps {
+  link: Link
+}
 
 /* Pagination */
 export interface PaginationProps {
@@ -57,6 +60,7 @@ export interface ObserverContextAction {
 /* Link */
 export interface Link {
   id: string,
+  identifier: string,
   slug: string,
   url: string,
   domain: string

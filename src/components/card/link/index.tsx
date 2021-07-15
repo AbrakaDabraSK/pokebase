@@ -3,14 +3,16 @@ import {
   LinkCardProps
 } from '../../../types'
 
-// @components
+// @block
 import Container from './block/container'
 import Link from './block/link'
+import ShareLink from './block/shareLink'
 import Image from './block/image'
 import Body from './block/body'
+import ActionBar from './block/actionBar'
 import Domain from './block/domain'
 import Title from './block/title'
-import Meta from './block/meta/meta'
+import Meta from './block/meta'
 import Desc from './block/desc'
 import Keywords from './block/keywords'
 
@@ -26,7 +28,10 @@ const LinkCard: React.FC<LinkCardProps> = ({ link }) => (
 
     {/** Information */}
     <Body>
-      <Domain name={link.domain} />
+      <ActionBar>
+        <Domain name={link.domain} />
+        <ShareLink link={link} />
+      </ActionBar>
       <Link
         id={link.id}
         url={link.url}
