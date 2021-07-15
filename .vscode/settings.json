@@ -5,11 +5,14 @@
     "Youtube",
     "deduping",
     "extralight",
+    "googlebot",
     "itemprop",
     "newsfeed",
     "pokebase",
+    "preconnect",
     "searchdatabase",
     "semibold",
-    "sharelink"
+    "sharelink",
+    "vercel"
   ]
 }
