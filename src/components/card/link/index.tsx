@@ -27,13 +27,18 @@ const LinkCard: React.FC<LinkCardProps> = ({ link }) => (
     {/** Information */}
     <Body>
       <Domain name={link.domain} />
-      <Title value={link.title} />
-      <Meta 
-        createdAt={link.createdAt}
-        updatedAt={link.updatedAt}
-        totalClicks={link.totalClicks}
-      />
-      <Desc value={link.desc} />
+      <Link
+        id={link.id}
+        url={link.url}
+      >
+        <Title value={link.title} />
+        <Meta 
+          createdAt={link.createdAt}
+          updatedAt={link.updatedAt}
+          totalClicks={link.totalClicks}
+        />
+        <Desc value={link.desc} />
+      </Link>
       <Keywords value={link.keywords} />
     </Body>
   </Container>
