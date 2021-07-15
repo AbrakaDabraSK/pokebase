@@ -1,5 +1,5 @@
 import Main from '../../components/main'
-import NavBar from '../../components/navbar/navbar'
+import NavBar from '../navbar'
 
 const BaseContainer: React.FC = ({ children }) => (
   <>

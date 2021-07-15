@@ -4,7 +4,7 @@
 
 /* LinkCard */
 export interface LinkCardProps {
-  poke: Poke
+  link: Link
 }
 export interface LinkCardMetaProps {
   createdAt: number, 
@@ -19,6 +19,11 @@ export interface LinkCardMetaLastViewedProps {
 }
 export interface LinkCardMetaPokesProps {
   totalClicks: number
+}
+export interface LinkCardHyperLinkProps {
+  id: string,
+  url: string,
+  children?: any
 }
 
 /* LinkCard */
@@ -49,9 +54,10 @@ export interface ObserverContextAction {
 * Entity
 */
 
-/* Poke */
-export interface Poke {
+/* Link */
+export interface Link {
   id: string,
+  slug: string,
   url: string,
   domain: string
   image: string
@@ -67,16 +73,31 @@ export interface Poke {
 * Kernel
 */
 
+/* Auth */
+export interface AuthInterface {
+  signIn: Function
+}
+
 /* Link */
 export interface LinkInterface {
-  indexName: string
+  tableName: string,
+  hasURL: Function,
+  byID: Function,
+  create: Function,
+  clicked: Function
 }
 export interface LinkIndexInterface {
   indexName: string,
-  terms: string
+  index: any,
+  attr: Array<string>
+  search: Function,
+  create: Function,
+  update: Function,
+  delete: Function
 }
 /* ListOfLinks */
 export interface ListOfLinksInterface {
+  tableName: string,
   total: Function,
   get: Function
 }

@@ -1,11 +1,21 @@
 import { createContext, useReducer } from 'react'
-import axios from 'axios'
+import Axios from 'axios'
 
 import {
   ObserverContextState,
   ObserverContextAction
 } from '../types'
 
+// @ObserverContext
+const ObserverContext = createContext(null)
+
+/**
+ *
+ *
+ * @param {ObserverContextState} state
+ * @param {ObserverContextAction} { type, payload }
+ * @return {*} 
+ */
 const reducer = (state: ObserverContextState, { type, payload }: ObserverContextAction) => {
   switch (type) {
     case 'START':
@@ -26,8 +36,7 @@ const reducer = (state: ObserverContextState, { type, payload }: ObserverContext
   }
 }
 
-const ObserverContext = createContext(null)
-
+// @ObserverProvider
 export const ObserverProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, defaultDispatch] = useReducer(reducer, {
     loading: false,
@@ -45,7 +54,7 @@ export const ObserverProvider = ({ children }: { children: React.ReactNode }) =>
 
     async function fetchData() {
       try {
-        const { data } = await axios.get(`/newsfeed?currentPage=${after}`)
+        const { data } = await Axios.get(`/newsfeed?currentPage=${after}`)
         dispatch('LOADED', data)
       } catch (error) {
         console.error(error)

@@ -5,7 +5,7 @@ import Axios from 'axios'
 
 import BaseContainer from '../../components/container/base'
 
-export default function Create() {
+const Create: React.FC = () => {
   const [url, setUrl] = useState('')
   const [errors, setErrors] = useState<any>({})
   const [loading, setLoading] = useState(false)
@@ -80,3 +80,5 @@ export default function Create() {
     </>
   )
 }
+
+export default Create

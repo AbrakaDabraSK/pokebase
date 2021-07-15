@@ -1,8 +1,16 @@
 import cheerio from 'cheerio'
+
 import {
   HtmlContentParserInterface
 } from '../types'
 
+/**
+ *
+ *
+ * @export
+ * @class HtmlContentParser
+ * @implements {HtmlContentParserInterface}
+ */
 export default class HtmlContentParser implements HtmlContentParserInterface {
   readonly $: any
 

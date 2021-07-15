@@ -1,5 +1,11 @@
 import axios from 'axios'
 
+/**
+ *
+ *
+ * @export
+ * @class Request
+ */
 export default class Request {
   /**
    * 
@@ -13,6 +19,7 @@ export default class Request {
         method: 'get',
         headers: { 'User-Agent': process.env.USER_AGENT }
       })
+      
       return res.data
     } catch(error) {
       throw new Error(error)

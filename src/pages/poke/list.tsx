@@ -4,18 +4,20 @@ import Axios from 'axios'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-import BaseContainer from '../../components/container/base'
-import Pagination from '../../components/pagination'
-import Domain from '../../components/card/link/block/domain'
-
 import {
   Direction,
   LinkColumns
 } from '../../enums'
 
+// @components
+import BaseContainer from '../../components/container/base'
+import Pagination from '../../components/pagination'
+import Domain from '../../components/card/link/block/domain'
+
+// @relativeTime
 dayjs.extend(relativeTime)
 
-export default function List() {
+const List: React.FC = () => {
   const [count, setCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
@@ -23,6 +25,7 @@ export default function List() {
 
   useEffect(() => {
     fetchCount().then(() => fetchPokes())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   const fetchCount = async () => {
@@ -39,7 +42,7 @@ export default function List() {
       const { data } = await Axios.get('/link', { params: { 
         perPage, 
         currentPage,
-        column: LinkColumns.CREATED,
+        column: LinkColumns.createdAt,
         direction: Direction.DESC
       }})
       setPokes(data)
@@ -140,3 +143,5 @@ export default function List() {
     </>
   )
 }
+
+export default List

@@ -1,14 +1,23 @@
 import Request from '../utils/request'
-import HtmlContentParser from '../utils/htmlContentParser'
-
-import {
-  getDomainFromURL
-} from '../utils/helpers'
 
 import { 
   CrawlerLinkResponse
 } from '../types'
 
+// @helpers
+import {
+  getDomainFromURL
+} from '../utils/helpers'
+
+// @utils 
+import HtmlContentParser from '../utils/htmlContentParser'
+
+/**
+ *
+ *
+ * @export
+ * @class Crawler
+ */
 export default class Crawler {
   /**
    * 
@@ -20,6 +29,7 @@ export default class Crawler {
       const htmlContent = await new Request().getHTMLContent(url)
       const parseContent = new HtmlContentParser(htmlContent)
       const parsedURL = (url[url.length - 1] === '/') ? url.slice(0, -1) : url
+
       const data: CrawlerLinkResponse = {
         url: parsedURL,
         domain: getDomainFromURL(url),
@@ -28,6 +38,7 @@ export default class Crawler {
         desc: parseContent.metaDesc(),
         keywords: parseContent.metaKeywords()
       }
+      
       return data
     } catch(error) {
       throw new Error(error)

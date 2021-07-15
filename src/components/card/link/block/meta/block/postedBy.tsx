@@ -7,18 +7,21 @@ import {
 
 dayjs.extend(relativeTime)
 
-const Meta: React.FC<LinkCardMetaPostedByProps> = ({ createdAt }) => {
-  return (
-    <div className="hidden sm:inline">
-      <i className="mr-1 text-green-400 bx bxs-alarm-snooze"></i>
-      <span className="mr-1 font-medium text-md">
-        Posted by
-      </span> 
-      <time className="mr-3">
-        {dayjs(createdAt).fromNow()}
-      </time>
-    </div>
-  )
-}
+const PostedBy: React.FC<LinkCardMetaPostedByProps> = ({ createdAt }) => (
+  <div className="hidden sm:inline">
+    {/** Icon **/}
+    <i className="relative mr-1 text-lg text-green-400 inset-0.5 bx bxs-calendar-star"></i>
 
-export default Meta
+    {/** Title **/}
+    <span className="mr-1 font-medium text-md">
+      Posted by
+    </span>
+
+    {/** Time **/}
+    <time className="mr-3">
+      {dayjs(createdAt).fromNow()}
+    </time>
+  </div>
+)
+
+export default PostedBy

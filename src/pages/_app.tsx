@@ -1,19 +1,24 @@
 import { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import { SWRConfig } from 'swr'
 import Axios from 'axios'
 
+// @context
 import { ObserverProvider } from '../context/observer'
+
+// @utils
 import fetcher from '../utils/fetcher'
 
+// @styles
 import '../styles/tailwind.css'
 
-Axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_BASE_URL
+// @Axios
+Axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_ENDPOINT
 Axios.defaults.withCredentials = false
 
 function App({ Component, pageProps }: AppProps) {
-  const { pathname } = useRouter()
-  const authRoutes = ['/register', '/login']
+  // const { pathname } = useRouter()
+  // const authRoutes = ['/register', '/login']
   // const authRoute = authRoutes.includes(pathname)
 
   return (

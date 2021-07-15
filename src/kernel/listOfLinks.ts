@@ -8,19 +8,30 @@ import {
   ListOfLinksInterface
 } from '../types'
 
+// @utils
 import {
   startIndex,
   endIndex
 } from '../utils/helpers'
+
+/**
+ *
+ *
+ * @export
+ * @class ListOfLinks
+ * @implements {ListOfLinksInterface}
+ */
 export default class ListOfLinks implements ListOfLinksInterface {
+  readonly tableName: string = 'link'
+  
   /**
    * 
-   * @returns
+   * @returns 
    */
   public async total() {
     try {
       const { count } = await database
-        .from('link')
+        .from(this.tableName)
         .select('*', { count: 'exact' })
 
       return count??0
@@ -45,7 +56,7 @@ export default class ListOfLinks implements ListOfLinksInterface {
   ) {
     try {
       const { data } = await database
-        .from('link')
+        .from(this.tableName)
         .select('*')
         .order(column, { ascending: direction === Direction.ASC??false })
         .range(

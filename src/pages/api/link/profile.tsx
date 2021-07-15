@@ -2,10 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { 
   HTTPRequestMethods
-} from '../../../../enums'
+} from '../../../enums'
 
 // @kernel
-import Link from '../../../../kernel/link'
+import Link from '../../../kernel/link'
 
 /**
  *
@@ -19,13 +19,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   switch (req.method) {
     case HTTPRequestMethods.GET:
       try {
-        const { id }: any = req.query
-        
-        await new Link().clicked(id)
+        const { identifier, domain, slug }: any = req.query
 
-        return res.status(200).json({ message: "OK" })
+        const data = await new Link().byRoute(identifier, domain, slug)
+        
+        return res.status(200).json(data)
       } catch(error) {
-        return res.status(500).json({ message: error })
+        return res.status(500).json({error})
       }
     default:
       return res.status(405).end() // Method Not Allowed

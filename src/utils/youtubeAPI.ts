@@ -1,10 +1,17 @@
 import axios from 'axios'
 
 import {
-  YoutubeAPIInterface,
-  YTResponse
+  YTResponse,
+  YoutubeAPIInterface
 } from '../types'
 
+/**
+ *
+ *
+ * @export
+ * @class YoutubeAPI
+ * @implements {YoutubeAPIInterface}
+ */
 export default class YoutubeAPI implements YoutubeAPIInterface {
   readonly key: string
 
@@ -52,6 +59,7 @@ export default class YoutubeAPI implements YoutubeAPIInterface {
         method: 'get',
         headers: { 'User-Agent': process.env.USER_AGENT }
       })
+      
       return res.data
     } catch(error) {
       throw new Error(error)

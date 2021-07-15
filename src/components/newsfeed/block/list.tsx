@@ -1,8 +1,8 @@
 import { useRef, useContext, useState, useEffect } from 'react'
-import ObserverContext from '../context/observer'
-import LinkCard from './card/link/link'
+import ObserverContext from '../../../context/observer'
+import LinkCard from '../../card/link'
 
-const NewsFeed: React.FC = () => {
+const List: React.FC = () => {
   const threshold = 0
   const root = null
   const rootMargin = '0%'
@@ -48,30 +48,23 @@ const NewsFeed: React.FC = () => {
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [element])
-  
+
   return (
-    <section className="flex-grow w-full p-3 sm:max-w-3xl">
-      <header>
-        <h3 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black">
-          Today
-        </h3>
-      </header>
-      <ul>
-        {/** Pokes */}
-        {data.map((poke, index) => (
-          <li key={index}>
-            <LinkCard poke={poke} />
-          </li>
-        ))}
+    <ul>
+      {/** Items */}
+      {data.map((item, index) => (
+        <li key={index}>
+          <LinkCard link={item} />
+        </li>
+      ))}
 
-        {/** Loading */}
-        {loading && <li className="p-3 text-lg text-center">Loading...</li>}
+      {/** Loading */}
+      {loading && <li className="p-3 text-lg text-center">Loading...</li>}
 
-        {/** Loading more */}
-        {!loading && more && ( <li ref={setElement}></li> )}
-      </ul>
-    </section>
+      {/** Loading more */}
+      {!loading && more && ( <li ref={setElement}></li> )}
+    </ul>
   )
-}
+} 
 
-export default NewsFeed
+export default List

@@ -1,18 +1,29 @@
 import database from '../database'
-import searchdatabase from '../searchClient'
-import Crawler from '../utils/crawler'
-import YoutubeAPI from '../utils/youtubeAPI'
 
-import { 
-  Poke,
+import {
+  LinkColumns,
+  LinkColumnsLength
+} from '../enums'
+
+import {
   LinkInterface,
   CrawlerLinkResponse,
   YTResponse
 } from '../types'
 
+// @kernel
+import LinkIndex from './linkIndex'
+
+// @utils
 import {
+  makeId,
+  slugify,
+  truncate,
   getDomainFromURL
 } from '../utils/helpers'
+
+import Crawler from '../utils/crawler'
+import YoutubeAPI from '../utils/youtubeAPI'
 
 /**
  *
@@ -22,7 +33,7 @@ import {
  * @implements {LinkInterface}
  */
 export default class Link implements LinkInterface {
-  readonly indexName: string = 'link'
+  readonly tableName: string = 'link'
 
   /**
    * 
@@ -32,14 +43,55 @@ export default class Link implements LinkInterface {
   public async hasURL(url: string) {
     try {
       const { data } = await database
-        .from('link')
-        .select("id")
-        .eq('url', url)
+        .from(this.tableName)
+        .select(LinkColumns.id)
+        .eq(LinkColumns.url, url)
         .limit(1)
 
       return 1 === data.length
     } catch(error) {
       throw new Error(error)
+    }
+  }
+
+  /**
+   * 
+   * @param url 
+   * @returns 
+   */
+  public async meta(url: string) {
+    // @Youtube
+    if (getDomainFromURL(url) === process.env.YOUTUBE_DOMAIN)
+      return await this.metaFromYoutube(url)
+
+    // @URL
+    return await this.metaFromURL(url)
+  }
+
+  /**
+   * 
+   * @param identifier 
+   * @param domain 
+   * @param slug 
+   * @returns 
+   */
+  public async byRoute(
+    identifier: string, 
+    domain: string, 
+    slug: string
+  ) {
+    try {
+      const { data } = await database
+        .from(this.tableName)
+        .select("*")
+        .eq(LinkColumns.identifier, identifier)
+        .eq(LinkColumns.domain, domain)
+        .eq(LinkColumns.slug, slug)
+        .single()
+
+      return data
+    } catch(error) {
+      return error.message
     }
   }
 
@@ -51,30 +103,14 @@ export default class Link implements LinkInterface {
   public async byID(id: string) {
     try {
       const { data } = await database
-        .from('link')
+        .from(this.tableName)
         .select("*")
-        .eq('id', id)
+        .eq(LinkColumns.id, id)
         .single()
 
       return data
     } catch(error) {
       return error.message
-    }
-  }
-
-  /**
-   * 
-   * @param url 
-   * @returns 
-   */
-  public async create(url: string) {
-    try {
-      if (getDomainFromURL(url) === process.env.YOUTUBE_DOMAIN)
-        return await this.createFromYoutube(url)
-
-      return await this.createFromURL(url)
-    } catch(error) {
-      throw new Error(error)
     }
   }
 
@@ -88,6 +124,9 @@ export default class Link implements LinkInterface {
         x: 1, 
         row_id: id 
       })
+      const data = await this.byID(id)
+
+      await new LinkIndex().update(data)
     } catch(error) {
       throw new Error(error)
     }
@@ -98,16 +137,47 @@ export default class Link implements LinkInterface {
    * @param url 
    * @returns 
    */
-  private async createFromURL(url: string) {
+  public async create(url: string) {
+    try {
+      const meta = await this.meta(url)
+      const title: string = truncate(meta.title, LinkColumnsLength.title)
+      const desc: string = truncate(meta.desc, LinkColumnsLength.desc)
+      const record = {
+        url,
+        title,
+        desc,
+        keywords: meta.keywords,
+        domain: meta.domain,
+        image: meta.image,
+        identifier: makeId(7),
+        slug: slugify(title)
+      }
+      const { data } = await database
+        .from(this.tableName)
+        .insert([record])
+
+      await new LinkIndex().create(data[0])
+
+      return data
+    } catch(error) {
+      throw new Error(error)
+    }
+  }  
+
+  /**
+   * Internal methods
+   */
+
+  /**
+   * 
+   * @param url 
+   * @returns 
+   */
+  private async metaFromURL(url: string) {
     try {
       const meta: CrawlerLinkResponse = await new Crawler().link(url)
-      const { data } = await database
-        .from('link')
-        .insert([meta])
-      
-      await this.createIndex(data[0])
 
-      return data
+      return meta
     } catch(error) {
       throw new Error(error)
     }
@@ -118,32 +188,13 @@ export default class Link implements LinkInterface {
    * @param url 
    * @returns 
    */
-  private async createFromYoutube(url: string) {
+  private async metaFromYoutube(url: string) {
     try {
       const meta: YTResponse = await new YoutubeAPI(url).get()
-      const { data } = await database
-        .from('link')
-        .insert([meta])
-
-      await this.createIndex(data[0])
-
-      return data
+      
+      return meta
     } catch(error) {
       throw new Error(error)
     }
-  }
-
-  /**
-   * 
-   * @param data 
-   */
-  private async createIndex(data: Poke) {
-    const index = searchdatabase.initIndex(this.indexName)
-    const objectID: string = data.id
-    const objectData = {
-      objectID,
-      ...data
-    }
-    await index.saveObjects([objectData])
   }
 }
