@@ -45,7 +45,7 @@ const Create: React.FC = () => {
           <fieldset className="flex flex-col items-baseline justify-center bg-white rounded shadow-sm">
             <legend className="w-full p-6 bg-gradient-to-br from-green-700 to-green-400">
               <h6 className="text-lg font-semibold text-white">
-                Login
+                Create a poke
               </h6>
             </legend>
             <div className="flex flex-col items-start justify-center w-full p-5">
