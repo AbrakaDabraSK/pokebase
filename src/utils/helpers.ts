@@ -89,7 +89,6 @@ export function slugify(str: string): string {
     .replace(/-/g, '_')
 }
 /**
- * @doc https://gist.github.com/codeguy/6684588#gistcomment-2759673
  * @param str 
  * @returns 
  */
