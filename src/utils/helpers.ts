@@ -88,3 +88,11 @@ export function slugify(str: string): string {
     .replace(/-+$/, '') // trim - from end of text
     .replace(/-/g, '_')
 }
+/**
+ * @doc https://gist.github.com/codeguy/6684588#gistcomment-2759673
+ * @param str 
+ * @returns 
+ */
+export function normalize(str: string): string  {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+}
