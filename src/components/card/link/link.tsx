@@ -23,7 +23,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ poke }) => {
 
   return (
     <a 
-      className="relative block mb-4 overflow-hidden break-words bg-white rounded-lg shadow-lg cursor-pointer min-w-340"
+      className="relative block mb-4 overflow-hidden break-words bg-white rounded-lg shadow-lg cursor-pointer min-w-340 max-w-5xl"
       href={poke.url}
       target="_blank"
       rel="noopener noreferrer"
