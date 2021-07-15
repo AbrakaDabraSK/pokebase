@@ -27,7 +27,7 @@ class MyDocument extends Document {
           <meta itemProp="title" content="pokebase" />
           <meta itemProp="keywords" content="open source,pokebase,facebook alternative" />
           <meta itemProp="description" content="The Open Source Facebook Alternative" />
-          <meta itemProp="image" content="https://pokebase.vercel.app/img/fb-poster-pokebase.png">
+          <meta itemProp="image" content="https://pokebase.vercel.app/img/fb-poster-pokebase.png" />
           {/** Facebook Open Graph data **/}
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://pokebase.vercel.app" />
@@ -52,7 +52,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           {/** Icons **/}
-          <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"></link>
+          <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
         </Head>
         <body className="bg-gray-100 font-body">
           <Main />
