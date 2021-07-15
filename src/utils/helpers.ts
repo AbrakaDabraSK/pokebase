@@ -89,6 +89,8 @@ export function slugify(str: string): string {
     .replace(/-/g, '_')
 }
 /**
+ * 
+ * @doc https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
  * @param str 
  * @returns 
  */
