@@ -26,7 +26,7 @@ export interface LinkCardHyperLinkProps {
   children?: any
 }
 
-/* LinkCard */
+/* Pagination */
 export interface PaginationProps {
   count: number
   perPage: number
