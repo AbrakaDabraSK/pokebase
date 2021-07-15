@@ -69,6 +69,7 @@ export function makeId(length: number): string {
  * @returns 
  */
 export function slugify(str: string): string {
+  str = normalize(str)
   str = str.trim()
   str = str.toLowerCase()
 

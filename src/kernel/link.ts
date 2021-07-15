@@ -140,8 +140,10 @@ export default class Link implements LinkInterface {
   public async create(url: string) {
     try {
       const meta = await this.meta(url)
+      
       const title: string = truncate(meta.title, LinkColumnsLength.title)
       const desc: string = truncate(meta.desc, LinkColumnsLength.desc)
+      
       const record = {
         url,
         title,
