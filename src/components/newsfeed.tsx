@@ -50,7 +50,7 @@ const NewsFeed: React.FC = () => {
   }, [element])
   
   return (
-    <section className="flex-grow w-full p-3 sm:max-w-5xl">
+    <section className="flex-grow w-full p-3 sm:max-w-3xl">
       <header>
         <h3 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black">
           Today
