@@ -6,10 +6,18 @@ module.exports = {
       body: ['IBM Plex Sans'],
     },
     extend: {
+      zIndex: {
+        '-1': '-1',
+       },
+      spacing: {
+        70: '17.5rem',
+        160: '40rem',
+      },
+      container: false,
       minWidth: {
         '0': '0',
         '150': '150px',
-        '340': '340px',
+        '420': '420px',
         '1/4': '25%',
         '1/2': '50%',
         '3/4': '75%',
@@ -22,12 +30,7 @@ module.exports = {
         '1/2': '50%',
         '3/4': '75%',
         'full': '100%',
-      },
-      spacing: {
-        70: '17.5rem',
-        160: '40rem',
-      },
-      container: false,
+      }
     },
   },
   variants: {
