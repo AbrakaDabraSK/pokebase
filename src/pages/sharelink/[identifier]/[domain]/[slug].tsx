@@ -53,9 +53,11 @@ const ShareLink: React.FC<ShareLinkPageProps> = ({ link, error }) => {
           {/** Header **/}
           <header>
             <h1 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black flex items-center justify-start">
-              {link?.domain === 'youtube.com' && (
-                <i className="mr-2 text-4xl font-semibold text-green-300 bx bxl-youtube"></i>
-              )}
+              {(link?.domain === 'youtube.com' ? (
+                <i className="mr-3 text-4xl font-semibold text-green-300 bx bxl-youtube"></i>
+              ) : (
+                <i className="mr-3 text-4xl font-semibold text-green-300 bx bxs-share-alt"></i>
+              ))}
               <>Sharelink</>
             </h1>
           </header>
