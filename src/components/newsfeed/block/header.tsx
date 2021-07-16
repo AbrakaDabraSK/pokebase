@@ -1,5 +1,5 @@
 const Header: React.FC = () => (
-  <header className="relative px-4 py-6 mb-4 shadow-md rounded-xl bg-gradient-to-br from-green-500 to-green-300">
+  <header className="relative px-4 py-6 mb-4 shadow-md rounded-xl bg-gradient-to-br from-green-500 to-green-300 min-w-340">
     <div 
       className="absolute inset-0"
       style={{

@@ -45,7 +45,7 @@ const Search: React.FC = () => {
   }
 
   return (
-    <div className="max-w-full px-1 w-80 md:px-4 sm:w-160">
+    <div className="w-64 max-w-full px-1 md:px-4 sm:w-160">
       <div className="relative flex items-center bg-gray-100 border-b shadow-md hover:border-green-500 hover:bg-white">
         <i className='pl-4 pr-3 text-gray-500 bx bx-search-alt'></i>
         <input 
