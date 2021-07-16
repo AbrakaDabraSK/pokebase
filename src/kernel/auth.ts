@@ -19,10 +19,24 @@ export default class Auth implements AuthInterface {
   public async signIn(email: string) {
     try {
       const { error } = await database.auth.signIn({ email })
-      
+
       if (error) throw error
     } catch(error) {
       throw new Error(error)
+    }
+  }
+
+  /**
+   * 
+   * @returns 
+   */
+  public async user() {
+    try {
+      const user = database.auth.user()
+
+      return user
+    } catch(error) {
+      throw new Error(error.message)
     }
   }
 }

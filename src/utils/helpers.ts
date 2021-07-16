@@ -98,3 +98,14 @@ export function slugify(str: string): string {
 export function normalize(str: string): string  {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 }
+/**
+ *
+ *
+ * @export
+ * @param {string} email
+ * @return {*}  {boolean}
+ */
+export function validEmail(email: string): boolean 
+{
+  return (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+}
