@@ -1,4 +1,14 @@
 /**
+* Page
+*/
+
+/** ShareLink */
+export interface ShareLinkPageProps {
+  link: Link,
+  error: string
+}
+
+/**
 * Component
 */
 
