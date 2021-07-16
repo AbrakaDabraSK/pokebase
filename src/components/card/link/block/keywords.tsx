@@ -6,7 +6,7 @@ const Keywords: React.FC<any> = ({ value }) => {
           {value.split(',').map((keyword, index) => (
             <span 
               key={index}
-              className="px-2 py-1 mb-1 mr-1 text-sm font-medium text-white bg-green-400 border-sm rounded-xl" 
+              className="px-2 py-1 mb-1 mr-1 text-sm font-semibold text-white bg-green-400 border-sm rounded-xl" 
             >
               { keyword }
             </span>
