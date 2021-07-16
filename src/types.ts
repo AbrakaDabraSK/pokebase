@@ -16,6 +16,12 @@ export interface ShareLinkPageProps {
 export interface LinkCardProps {
   link: Link
 }
+export interface LinkCardHeaderProps {
+  link: Link
+}
+export interface LinkCardYoutubeProps {
+  link: Link
+}
 export interface LinkCardMetaProps {
   createdAt: number, 
   updatedAt: number, 
@@ -35,7 +41,10 @@ export interface LinkCardHyperLinkProps {
   url: string,
   children?: any
 }
-export interface ShareLinkProps {
+export interface LinkCardShareLinkProps {
+  link: Link
+}
+export interface LinkCardCommentLinkProps {
   link: Link
 }
 
@@ -51,6 +60,12 @@ export interface PaginationProps {
 * Context
 */
 
+/* Default */
+export interface ContextAction {
+  type: string
+  payload: any
+}
+
 /* Observer */
 export interface ObserverContextState {
   loading: boolean
@@ -58,9 +73,11 @@ export interface ObserverContextState {
   data: Array<any>
   after: 0
 }
-export interface ObserverContextAction {
-  type: string
-  payload: any
+
+/* YoutubeModal */
+export interface YoutubeModalContextState {
+  isPlayed: boolean,
+  url: string
 }
 
 /**

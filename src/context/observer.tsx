@@ -2,8 +2,8 @@ import { createContext, useReducer } from 'react'
 import Axios from 'axios'
 
 import {
-  ObserverContextState,
-  ObserverContextAction
+  ContextAction,
+  ObserverContextState
 } from '../types'
 
 // @ObserverContext
@@ -13,10 +13,10 @@ const ObserverContext = createContext(null)
  *
  *
  * @param {ObserverContextState} state
- * @param {ObserverContextAction} { type, payload }
+ * @param {ContextAction} { type, payload }
  * @return {*} 
  */
-const reducer = (state: ObserverContextState, { type, payload }: ObserverContextAction) => {
+const reducer = (state: ObserverContextState, { type, payload }: ContextAction) => {
   switch (type) {
     case 'START':
       return {

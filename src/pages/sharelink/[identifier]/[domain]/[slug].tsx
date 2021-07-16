@@ -6,7 +6,14 @@ import {
   ShareLinkPageProps
 } from '../../../../types'
 
+// @helpers
+import {
+  hasShopDomain,
+  hasYoutubeDomain
+} from '../../../../utils/helpers'
+
 // @components
+import YoutubeModal from '../../../../components/modal/youtube'
 import LinkCard from '../../../../components/card/link'
 import BaseContainer from '../../../../components/container/base'
 
@@ -14,6 +21,13 @@ const ShareLink: React.FC<ShareLinkPageProps> = ({ link, error }) => {
   const router = useRouter()
 
   if (error) router.push('/')
+
+  const metaType = (domain: string): string => {
+    if (hasYoutubeDomain(domain)) return 'Video'
+    if (hasShopDomain(domain)) return 'Shop'
+
+    return 'Website'
+  }
   
   return (
     <>
@@ -51,23 +65,39 @@ const ShareLink: React.FC<ShareLinkPageProps> = ({ link, error }) => {
       <BaseContainer>
         <section className="flex-grow w-full p-3 sm:max-w-3xl">
           {/** Header **/}
-          <header>
-            <h1 className="pl-1.5 md:pl-0 mt-1 mb-2 text-2xl font-bold text-black flex items-center justify-start">
-              {(link?.domain === 'youtube.com' ? (
-                <i className="mr-3 text-4xl font-semibold text-green-300 bx bxl-youtube"></i>
+          <header className="relative px-4 py-4 mb-4 shadow-md rounded-xl bg-gradient-to-br from-green-500 to-green-300 min-w-340">
+            {/** Shape **/}
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url('/img/shapes/shape_7.png`,
+              }}
+            ></div>
+            <h1 className="pl-1.5 md:pl-0 mt-1 mb-2 flex items-center justify-start text-white">
+              {/** Icon **/}
+              {(hasYoutubeDomain(link.domain) ? (
+                <i className="mr-3 text-4xl font-semibold bx bxl-youtube"></i>
               ) : (
-                <i className="mr-3 text-4xl font-semibold text-green-300 bx bxs-share-alt"></i>
+                <i className="mr-3 text-4xl font-semibold bx bxs-share-alt"></i>
               ))}
-              <>Sharelink</>
+
+              {/** Title **/}
+              <span className="pl-4 ml-4 border-l-4 border-white">
+                <span className="text-3xl font-extrabold">
+                  Sharelink
+                </span>
+                <small className="block text-sm font-medium sm:text-base">
+                  {metaType(link.domain)}
+                </small>
+              </span>
             </h1>
           </header>
 
           {/** LinkCard **/}
-          {link && (
-            <LinkCard link={link} />
-          )}
+          {link && (<LinkCard link={link} />)}
         </section>
       </BaseContainer>
+      <YoutubeModal />
     </>
   )
 }

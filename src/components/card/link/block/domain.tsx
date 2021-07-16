@@ -1,12 +1,18 @@
-const Domain: React.FC<any> = ({ name }) => {
+import {
+  hasYoutubeDomain
+} from '../../../../utils/helpers'
+
+const Domain: React.FC<any> = ({ value }) => {
   return (
-    <span className="items-center px-2 py-1 text-sm font-bold text-white transition duration-300 ease-in-out delay-75 bg-green-400 rounded-lg hover:bg-green-500">
-      {(name === 'youtube.com' ? (
-        <i className="relative mr-1 inset-0.5 text-md bx bxl-youtube"></i>
+    <span className="flex items-center justify-center px-3 py-1.5 font-bold text-md text-white transition duration-300 ease-in-out delay-75 bg-green-400 rounded-lg hover:bg-green-500">
+      {(hasYoutubeDomain(value) ? (
+        <i className="bx bxl-youtube"></i>
       ) : (
-        <i className="relative mr-1 inset-0.5 text-md bx bxs-bone"></i>
+        <i className="bx bx-globe"></i>
       ))}
-      <>{ name }</>
+      <span className="ml-1 font-extrabold">
+        { value }
+      </span>
     </span>
   )
 }

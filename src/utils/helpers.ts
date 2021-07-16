@@ -109,3 +109,36 @@ export function validEmail(email: string): boolean
 {
   return (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
 }
+/**
+ * 
+ * @param url 
+ * @returns 
+ */
+export function getYTembedKeyFromURL(url: string): string
+{
+  return !url.length ? '' : url.match(/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/)[1]
+}
+/**
+ *
+ *
+ * @export
+ * @param {string} domain
+ * @return {*}  {boolean}
+ */
+export function hasYoutubeDomain(domain: string): boolean 
+{
+  if (domain === 'youtube.com')
+    return true
+  return false
+}
+/**
+ *
+ *
+ * @export
+ * @param {string} domain
+ * @return {*}  {boolean}
+ */
+export function hasShopDomain(domain: string): boolean
+{
+  return 'alza.sk' === domain??false
+}

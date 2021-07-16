@@ -5,6 +5,11 @@ import {
   YoutubeAPIInterface
 } from '../types'
 
+// @utils
+import {
+  getYTembedKeyFromURL
+} from '../utils/helpers'
+
 /**
  *
  *
@@ -20,7 +25,7 @@ export default class YoutubeAPI implements YoutubeAPIInterface {
    * @param url 
    */
   constructor(url: string) {
-    this.key = url.match(/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/)[1]
+    this.key = getYTembedKeyFromURL(url)
   }
 
   /**

@@ -5,6 +5,7 @@ import BaseContainer from '../components/container/base'
 import Explore from '../components/explore'
 import NewsFeed from '../components/newsfeed'
 import Sidebar from '../components/sidebar'
+import YoutubeModal from '../components/modal/youtube'
 
 const Home: React.FC = () => {
   return (
@@ -43,6 +44,7 @@ const Home: React.FC = () => {
         <NewsFeed />
         <Sidebar />
       </BaseContainer>
+      <YoutubeModal />
     </>
   )
 }

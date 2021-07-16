@@ -5,6 +5,7 @@ import Axios from 'axios'
 
 // @context
 import { ObserverProvider } from '../context/observer'
+import { YoutubeModalProvider } from '../context/youtubeModal'
 
 // @utils
 import fetcher from '../utils/fetcher'
@@ -29,7 +30,9 @@ function App({ Component, pageProps }: AppProps) {
       }}
     >
       <ObserverProvider>
-        <Component {...pageProps} />
+        <YoutubeModalProvider>
+          <Component {...pageProps} />
+        </YoutubeModalProvider>
       </ObserverProvider>
     </SWRConfig>
   )
