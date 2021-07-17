@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import link from 'next/link'
+import { useContext, useRef, useCallback, useEffect } from 'react'
 
 // @context
 import YoutubeModalContext from '../../context/youtubeModal'
@@ -11,11 +10,31 @@ import {
 
 const YoutubeModal: React.FC = () => {
   const { isPlayed, url, stopVideo } = useContext(YoutubeModalContext)
+  const modalRef = useRef()
+
+  const close = (e) => {
+    if (modalRef.current === e.target)
+      stopVideo()
+  }
+
+  const keyPress = useCallback(e => {
+    if (e.key === 'Escape' && isPlayed)
+      stopVideo()
+  }, [isPlayed, stopVideo])
+
+  useEffect(() => {
+    document.addEventListener('keydown', keyPress)
+    return () => document.removeEventListener('keydown', keyPress)
+  }, [keyPress])
   
   return (
     <>
       {isPlayed && (
-        <section className="fixed inset-0 z-50 text-white bg-black p-7">
+        <section
+          ref={modalRef}
+          onClick={e => close(e)}
+          className="fixed inset-0 z-50 text-white bg-black p-7"
+        >
           <header className="flex items-center justify-between mx-auto xl:w-8/12">
             <h4 className="flex items-center justify-start">
               <i className="mr-3 text-4xl font-semibold text-red-600 bx bxl-youtube"></i>
