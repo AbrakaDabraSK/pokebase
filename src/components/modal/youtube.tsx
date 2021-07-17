@@ -28,7 +28,7 @@ const YoutubeModal: React.FC = () => {
               <i className="text-3xl font-extrabold text-gray-200 bx bx-window-close"></i>
             </button>
           </header>
-          <section className="relative w-full mx-auto mt-6 h-52 sm:h-96 md:h-120 2xl:h-130 xl:w-8/12">
+          <section className="relative w-full mx-auto mt-6 h-52 sm:h-96 xl:h-120 2xl:h-130 xl:w-8/12">
             <iframe
               width="853"
               height="480"
