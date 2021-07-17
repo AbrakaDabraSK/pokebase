@@ -1,4 +1,4 @@
-// @components
+// @block
 import Body from './block/body'
 import Header from './block/header'
 import List from './block/list'
