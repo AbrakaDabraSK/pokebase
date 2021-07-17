@@ -10,7 +10,7 @@ dayjs.extend(relativeTime)
 const Pokes: React.FC<LinkCardMetaPokesProps> = ({ totalClicks }) => {
   return (
     <section className="flex items-center justify-start">
-      <i className="mr-1 text-xl text-green-400 bx bxs-bug-alt"></i>
+      <i className="mr-1 text-xl text-green-400 bx bxs-heart-circle"></i>
       <span className="mr-1 font-medium text-md">
         Pokes
       </span>
