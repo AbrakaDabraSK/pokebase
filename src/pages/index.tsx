@@ -38,6 +38,8 @@ const Home: React.FC = () => {
         <meta name="twitter:description" content="The Open Source Facebook Alternative" />
         <meta name="twitter:creator" content="@author_handle" />
         <meta name="twitter:image" content="https://pokebase.vercel.app/img/fb-poster-pokebase.png" />
+        {/** Title **/}
+        <title>pokebase</title>
       </Head>
       <BaseContainer>
         <Explore />
