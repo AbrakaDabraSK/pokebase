@@ -4,10 +4,11 @@ Create a personal alternative of Facebook in less than 15 minutes. Start your pr
 
 ## Build faster and focus on your products
 
-- Database
-- Authentication
-- Storage
-- Functions
+- [Database] Every project is a full Postgres database, the world's most trusted relational database.
+- [Authentication] Add user sign ups and logins, securing your data with Row Level Security.
+- [Storage] Store, organize, and serve large files. Any media, including videos and images.
+- [Functions] Write custom code and cron jobs without deploying or scaling servers.
+- [API] Fully managed endpoint for every devices
 
 ## Getting Started
 
