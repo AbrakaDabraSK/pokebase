@@ -14,6 +14,12 @@ Our platform enables frontend teams to do their best work.
 - Functions - Write custom code and cron jobs without deploying or scaling servers.
 - API - Fully managed endpoint for every devices
 
+## Services
+
+- Supabase
+- Vercel
+- Algolia
+
 ## Join the community
 
 Supported by a network of early advocates, contributors, and champions
