@@ -22,7 +22,7 @@ const Home: React.FC = () => {
         <meta itemProp="title" content="pokebase" />
         <meta itemProp="keywords" content="open source,pokebase,facebook alternative" />
         <meta itemProp="description" content="The Open Source Facebook Alternative" />
-        <meta itemProp="image" content="https://pokebase.vercel.app/img/pokebase-poster.png?v=0.1" />
+        <meta itemProp="image" content="https://pokebase.vercel.app/img/pokebase-poster.png?v=0.2" />
         {/** Facebook Open Graph data **/}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://pokebase.vercel.app" />
@@ -30,14 +30,14 @@ const Home: React.FC = () => {
         <meta property="og:site_name" content="pokebase" />
         <meta property="og:title" content="pokebase" />
         <meta property="og:description" content="The Open Source Facebook Alternative" />
-        <meta property="og:image" content="https://pokebase.vercel.app/img/pokebase-poster.png?v=0.1" />
+        <meta property="og:image" content="https://pokebase.vercel.app/img/pokebase-poster.png?v=0.2" />
         {/** Twitter Card data **/}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@publisher_handle" />
         <meta name="twitter:title" content="pokebase" />
         <meta name="twitter:description" content="The Open Source Facebook Alternative" />
         <meta name="twitter:creator" content="@author_handle" />
-        <meta name="twitter:image" content="https://pokebase.vercel.app/img/pokebase-poster.png?v=0.1" />
+        <meta name="twitter:image" content="https://pokebase.vercel.app/img/pokebase-poster.png?v=0.2" />
         {/** Title **/}
         <title>pokebase</title>
       </Head>
