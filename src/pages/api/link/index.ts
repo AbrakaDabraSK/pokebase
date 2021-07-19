@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import CryptoJS  from 'crypto-js'
 
 import {
   Direction,
@@ -40,13 +41,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     case HTTPRequestMethods.POST:
       try {
-        const { url } = req.body
+        const { message } = req.body
 
-        if (!url.length) { return res.status(400).json({ message: 'URL not defined' }) }
+        const bytes = CryptoJS.AES.decrypt(message, process.env.NEXT_PUBLIC_CRYPTO_KEY)
+        const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+
+        const { url, pin } = decryptedData
+
+        if (!pin.length) { return res.status(400).json({ message: 'Enter your personal PIN code' }) }
+
+        if (pin !== process.env.PIN) { return res.status(400).json({ message: 'Your personal PIN code is wrong' }) }
+
+        if (!url.length) { return res.status(400).json({ message: 'Enter URL' }) }
 
         const exists = await new Link().hasURL(url)
 
-        if (exists) { return res.status(400).json({ message: 'URL is already taken' }) }
+        if (exists) { return res.status(400).json({ message: 'URL exists' }) }
 
         const data = await new Link().create(url)
         

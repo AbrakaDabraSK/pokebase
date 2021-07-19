@@ -13,6 +13,7 @@
     "algoliasearch": "^4.10.3",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.10",
+    "crypto-js": "^4.0.0",
     "dayjs": "^1.10.6",
     "next": "11.0.1",
     "psl": "^1.8.0",

@@ -110,6 +110,18 @@ export function validEmail(email: string): boolean
   return (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
 }
 /**
+ *
+ *
+ * @export
+ * @param {string} url
+ * @return {*}  {string}
+ */
+export function parsedURL(url: string):string {
+  const urlObject = new URL(url)
+  const parsedURL = urlObject.protocol + '//' + urlObject.host + urlObject.pathname
+  return parsedURL
+}
+/**
  * 
  * @param url 
  * @returns 
