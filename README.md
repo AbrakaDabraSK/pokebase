@@ -4,14 +4,15 @@ Create a personal alternative of Facebook in less than 15 minutes. Start your pr
 
 ## Build faster and focus on your products
 
-- [Typescript] Typed JavaScript at Any Scale.
-- [NextJS] The React Framework for Production
-- [Vercel] 
-- [Database] Postgres database, the world's most trusted relational database.
-- [Authentication] Add user sign ups and logins, securing your data with Row Level Security.
-- [Storage] Store, organize, and serve large files. Any media, including videos and images.
-- [Functions] Write custom code and cron jobs without deploying or scaling servers.
-- [API] Fully managed endpoint for every devices
+- [Typescript] - Typed JavaScript at Any Scale.
+- [NextJS] - The React Framework for Production
+- [Vercel] - Vercel combines the best developer experience with an obsessive focus on end-user performance.
+Our platform enables frontend teams to do their best work.
+- [Database] - Postgres database, the world's most trusted relational database.
+- [Authentication] - Add user sign ups and logins, securing your data with Row Level Security.
+- [Storage] - Store, organize, and serve large files. Any media, including videos and images.
+- [Functions] - Write custom code and cron jobs without deploying or scaling servers.
+- [API] - Fully managed endpoint for every devices
 
 ## Join the community
 
