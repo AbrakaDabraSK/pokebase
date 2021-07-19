@@ -7,11 +7,6 @@ import Axios from 'axios'
 // @components
 import BaseContainer from '../../components/container/base'
 
-// @helpers
-import {
-  parsedURL
-} from '../../utils/helpers'
-
 const Create: React.FC = () => {
   const [url, setUrl] = useState('')
   const [pin, setPIN] = useState('')
@@ -27,7 +22,7 @@ const Create: React.FC = () => {
     setLoading(true)
     
     try {
-      const data = { url: parsedURL(url), pin }
+      const data = { url, pin }
       const message = CryptoJS.AES.encrypt(JSON.stringify(data), process.env.NEXT_PUBLIC_CRYPTO_KEY).toString()
       
       await Axios.post('/link', {message})

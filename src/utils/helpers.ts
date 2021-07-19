@@ -117,8 +117,12 @@ export function validEmail(email: string): boolean
  * @return {*}  {string}
  */
 export function parsedURL(url: string):string {
+  if (hasYoutubeDomain(getDomainFromURL(url)))
+    return url
+
   const urlObject = new URL(url)
   const parsedURL = urlObject.protocol + '//' + urlObject.host + urlObject.pathname
+
   return parsedURL
 }
 /**

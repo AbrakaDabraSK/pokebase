@@ -11,6 +11,11 @@ import {
 import Link from '../../../kernel/link'
 import ListOfLinks from '../../../kernel/listOfLinks'
 
+// @helpers
+import {
+  parsedURL
+} from '../../../utils/helpers'
+
 /**
  *
  *
@@ -47,18 +52,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
 
         const { url, pin } = decryptedData
+        const newURL = parsedURL(url)
 
         if (!pin.length) { return res.status(400).json({ message: 'Enter your personal PIN code' }) }
 
         if (pin !== process.env.PIN) { return res.status(400).json({ message: 'Your personal PIN code is wrong' }) }
 
-        if (!url.length) { return res.status(400).json({ message: 'Enter URL' }) }
+        if (!newURL.length) { return res.status(400).json({ message: 'Enter URL' }) }
 
-        const exists = await new Link().hasURL(url)
+        const exists = await new Link().hasURL(newURL)
 
         if (exists) { return res.status(400).json({ message: 'URL exists' }) }
 
-        const data = await new Link().create(url)
+        const data = await new Link().create(newURL)
         
         return res.status(201).json(data)
       } catch(error) {

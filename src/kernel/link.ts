@@ -19,7 +19,8 @@ import {
   makeId,
   slugify,
   truncate,
-  getDomainFromURL
+  getDomainFromURL,
+  hasYoutubeDomain
 } from '../utils/helpers'
 
 import Crawler from '../utils/crawler'
@@ -61,7 +62,7 @@ export default class Link implements LinkInterface {
    */
   public async meta(url: string) {
     // @Youtube
-    if (getDomainFromURL(url) === process.env.YOUTUBE_DOMAIN)
+    if (hasYoutubeDomain(getDomainFromURL(url)))
       return await this.metaFromYoutube(url)
 
     // @URL
@@ -145,7 +146,7 @@ export default class Link implements LinkInterface {
       const desc: string = truncate(meta.desc, LinkColumnsLength.desc)
       
       const record = {
-        url,
+        url: meta.url,
         title,
         desc,
         keywords: meta.keywords,
