@@ -1,3 +1,14 @@
+## The Open Source Facebook Alternative
+
+Create a personal alternative of Facebook in less than 15 minutes. Start your project with a Postgres Database, Authentication, instant APIs, realtime subscriptions and Storage and more.
+
+## Build faster and focus on your products
+
+- Database
+- Authentication
+- Storage
+- Functions
+
 ## Getting Started
 
 Install:
