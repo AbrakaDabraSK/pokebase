@@ -1,6 +1,6 @@
-## The Open Source Facebook Alternative
+## Public community link aggregator
 
-Create a personal alternative of Facebook in less than 15 minutes. Start your project with a Postgres Database, Authentication, instant APIs, realtime subscriptions, Storage and more.
+Create a personal public community link aggregator in less than 15 minutes. Start your project with a Postgres Database, Authentication, instant APIs, realtime subscriptions, Storage and more.
 
 ## Build faster and focus on your products
 
@@ -22,7 +22,7 @@ Our platform enables frontend teams to do their best work.
 
 ## Join the community
 
-Supported by a network of early advocates, contributors, and champions
+abraka-dabra.sk * social.abraka-dabra.sk
 
 ## Getting Started
 
